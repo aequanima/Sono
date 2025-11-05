@@ -1,4 +1,4 @@
-# Sono# Sono
+#Sono
 
 An auditory discrimination game for early intervention therapy, designed to help toddlers build positive associations with sounds through controlled, predictable matching activities.
 

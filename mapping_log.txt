@@ -1,0 +1,301 @@
+Fetching: not
+  ✓ not -> 9582
+Fetching: no
+  ✓ no -> 421
+Fetching: want
+  ✓ want -> 458
+Fetching: go
+  ✓ go -> 7452
+Fetching: more
+  ✓ more -> 8037
+Fetching: it
+  ✓ it -> 9369
+Fetching: that
+  ✓ that -> 7221
+Fetching: like
+  ✓ like -> 489
+Fetching: help
+  ✓ help -> 214
+Fetching: in
+  ✓ in -> 6546
+Fetching: on
+  ✓ on -> 25743
+Fetching: up
+  ✓ up -> 5878
+Fetching: stop
+  ✓ stop -> 1598
+Fetching: you
+  ✓ you -> 1294
+Fetching: yes
+  ✓ yes -> 25614
+Fetching: yeah
+  ✗ yeah (not found)
+Fetching: a
+  ✓ a -> 689
+Fetching: the
+  ✓ the -> 2255
+Fetching: is
+  ✓ is -> 25379
+Fetching: finished
+  ✓ finished -> 10860
+Fetching: all
+  ✓ all -> 15399
+Fetching: done
+  ✓ done -> 9307
+Fetching: what
+  ✓ what -> 3906
+Fetching: mine
+  ✓ mine -> 9467
+Fetching: my
+  ✓ my -> 21409
+Fetching: get
+  ✓ get -> 1292
+Fetching: make
+  ✓ make -> 21395
+Fetching: look
+  ✓ look -> 1707
+Fetching: different
+  ✓ different -> 3901
+Fetching: do
+  ✓ do -> 461
+Fetching: put
+  ✓ put -> 11175
+Fetching: turn
+  ✓ turn -> 1247
+Fetching: open
+  ✓ open -> 7110
+Fetching: big
+  ✓ big -> 166
+Fetching: little
+  ✓ little -> 490
+Fetching: good
+  ✓ good -> 7942
+Fetching: some
+  ✓ some -> 11594
+Fetching: here
+  ✓ here -> 3908
+Fetching: out
+  ✓ out -> 7135
+Fetching: off
+  ✓ off -> 2203
+Fetching: down
+  ✓ down -> 9317
+Fetching: she
+  ✓ she -> 6887
+Fetching: he
+  ✓ he -> 6858
+Fetching: who
+  ✓ who -> 478
+Fetching: where
+  ✓ where -> 1739
+Fetching: when
+  ✓ when -> 479
+Fetching: can
+  ✓ can -> 775
+Fetching: play
+  ✓ play -> 474
+Fetching: eat
+  ✓ eat -> 880
+Fetching: drink
+  ✓ drink -> 10859
+Fetching: me
+  ✓ me -> 618
+Fetching: need
+  ✓ need -> 515
+Fetching: this
+  ✓ this -> 7237
+Fetching: and
+  ✓ and -> 21297
+Fetching: but
+  ✓ but -> 1687
+Fetching: because
+  ✓ because -> 1697
+Fetching: with
+  ✓ with -> 1713
+Fetching: will
+  ✓ will -> 1853
+Fetching: say
+  ✓ say -> 3916
+Fetching: tell
+  ✓ tell -> 7204
+Fetching: think
+  ✓ think -> 497
+Fetching: know
+  ✓ know -> 565
+Fetching: see
+  ✗ see (not found)
+Fetching: come
+  ✓ come -> 524
+Fetching: give
+  ✓ give -> 1737
+Fetching: take
+  ✓ take -> 575
+Fetching: always
+  ✓ always -> 3919
+Fetching: very
+  ✓ very -> 494
+Fetching: fast
+  ✓ fast -> 8015
+Fetching: slow
+  ✓ slow -> 3921
+Fetching: happy
+  ✓ happy -> 1479
+Fetching: sad
+  ✓ sad -> 1480
+Fetching: bad
+  ✓ bad -> 1475
+Fetching: same
+  ✓ same -> 1619
+Fetching: away
+  ✓ away -> 6517
+Fetching: over
+  ✓ over -> 12161
+Fetching: under
+  ✓ under -> 5867
+Fetching: other
+  ✓ other -> 21420
+Fetching: why
+  ✓ why -> 526
+Fetching: how
+  ✓ how -> 477
+Fetching: then
+  ✓ then -> 1592
+Fetching: now
+  ✓ now -> 3926
+Fetching: later
+  ✓ later -> 517
+Fetching: we
+  ✓ we -> 5714
+Fetching: they
+  ✓ they -> 7231
+Fetching: feel
+  ✓ feel -> 8362
+Fetching: work
+  ✓ work -> 7640
+Fetching: read
+  ✓ read -> 6880
+Fetching: again
+  ✓ again -> 3914
+Fetching: don't
+  ✗ don't (not found)
+Fetching: are
+  ✓ are -> 6448
+Fetching: was
+  ✓ was -> 16718
+Fetching: have
+  ✓ have -> 493
+Fetching: for
+  ✓ for -> 21330
+Fetching: of
+  ✓ of -> 4130
+Fetching: to
+  ✓ to -> 7278
+Fetching: close
+  ✓ close -> 21308
+Fetching: question
+  ✓ question -> 1828
+Fetching: listen
+  ✓ listen -> 514
+Fetching: home
+  ✓ home -> 6778
+Fetching: time
+  ✓ time -> 454
+Fetching: friend
+  ✓ friend -> 419
+Fetching: fun
+  ✓ fun -> 9007
+Fetching: mom
+  ✓ mom -> 9489
+Fetching: dad
+  ✓ dad -> 9157
+Fetching: baby
+  ✓ baby -> 1540
+Fetching: milk
+  ✓ milk -> 1012
+Fetching: water
+  ✓ water -> 1265
+Fetching: juice
+  ✓ juice -> 966
+Fetching: food
+  ✓ food -> 907
+Fetching: snack
+  ✓ snack -> 1168
+Fetching: cup
+  ✓ cup -> 843
+Fetching: spoon
+  ✓ spoon -> 1186
+Fetching: bowl
+  ✓ bowl -> 752
+Fetching: toy
+  ✓ toy -> 2040
+Fetching: ball
+  ✓ ball -> 1424
+Fetching: book
+  ✓ book -> 1752
+Fetching: car
+  ✓ car -> 409
+Fetching: dog
+  ✓ dog -> 1357
+Fetching: cat
+  ✓ cat -> 1358
+Fetching: bed
+  ✓ bed -> 1388
+Fetching: chair
+  ✓ chair -> 789
+Fetching: house
+  ✓ house -> 590
+Fetching: shoes
+  ✓ shoes -> 1504
+Fetching: hat
+  ✓ hat -> 1498
+Fetching: coat
+  ✓ coat -> 1485
+Fetching: diaper
+  ✓ diaper -> 6866
+Fetching: potty
+  ✓ potty -> 10873
+Fetching: bath
+  ✓ bath -> 1413
+Fetching: brush
+  ✓ brush -> 44936
+Fetching: tv
+  ✓ tv -> 1812
+Fetching: phone
+  ✓ phone -> 21430
+Fetching: music
+  ✓ music -> 3964
+Fetching: outside
+  ✓ outside -> 1824
+Fetching: park
+  ✓ park -> 1529
+Fetching: school
+  ✓ school -> 1305
+Fetching: night
+  ✓ night -> 1665
+Fetching: morning
+  ✓ morning -> 532
+Fetching: sun
+  ✓ sun -> 1715
+Fetching: moon
+  ✓ moon -> 1773
+Fetching: animal
+  ✓ animal -> 1527
+Fetching: color
+  ✓ color -> 364
+Fetching: block
+  ✓ block -> 4267
+Fetching: song
+  ✓ song -> 2026
+Fetching: doll
+  ✓ doll -> 1913
+Fetching: blanket
+  ✓ blanket -> 6060
+Fetching: pillow
+  ✓ pillow -> 1408
+Fetching: crib
+  ✓ crib -> 7045
+Fetching: light
+  ✓ light -> 550
+
+Mapping saved to: spreadthesign_words.json
+Total words processed: 149

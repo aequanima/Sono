@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Share</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="start-screen" class="screen active">
+            <div class="utility-tray">
+                <button class="utility-btn" id="logo-btn" aria-label="Visit Dendrite AT" title="Visit Dendrite AT" data-i18n-aria="visitDendriteAT" data-i18n-title="visitDendriteAT">
+                    <svg viewBox="0 0 284.59748 285.05746" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(-155.87645,-254.24692)">
+                            <path d="m 443,523.2 c 0.1,-0.5 0.2,0.2 0.2,0.3 -0.2,0.3 -0.2,0 -0.2,-0.2 v -0.2 z" />
+                            <path d="m 180,465.3 c -8.4,-2.2 -15.6,-9.3 -20.2,-16.6 -7.7,-11.9 -3.2,-26.1 6,-35.8 10.7,-11.8 21.8,-13 35.9,-17.3 8.9,-3.1 16.6,-9.8 21,-18.2 4.1,-7.9 5.5,-18.2 9,-26.4 3.6,-8.4 10.5,-15.1 18.1,-20.1 7.3,-4.9 16.1,-5.8 24.2,-2.4 11.8,4.4 21,15.8 21.7,28.5 0.2,9 -5.8,17.6 -12,24.1 -5.8,6.2 -13.1,9.9 -21.4,11.8 -8.3,2.1 -17.4,4.1 -24.1,9.6 -5.6,4.6 -10,11.3 -12.2,18 -1.6,5 -2.1,10.1 -3.6,15.1 -4.6,16.4 -24.3,33.7 -42.1,29.9 h -0.4 z" />
+                            <path d="m 324.4,464.7 c -9,-3.3 -16.8,-10 -20.4,-19 -8.4,-18.5 4.9,-36.6 25.3,-44.6 10.3,-3.9 22.3,-5.2 30.7,-12.4 15.3,-12.7 12.1,-26.5 19.4,-41.9 3.7,-7 9.8,-12.7 17.3,-16.8 7.1,-4.2 15.2,-4.9 22.7,-1.6 35.9,15.8 21.9,57.4 -11.8,64.6 -17.5,3.9 -30.6,9.6 -36.2,27.3 -2.4,7.1 -3.9,16 -6.9,22.6 -6.5,14.1 -23.6,27.7 -39.7,21.9 h -0.4 z" />
+                            <path d="m 329,391.8 c -12.8,-4.9 -23,-15.1 -26.7,-28.7 -1.5,-5.2 -2.6,-10.8 -4.2,-15.9 -3.3,-10 -11.1,-18.3 -20.7,-22.2 -13.4,-4.9 -26.3,-5 -36.9,-16.1 -9.1,-8.7 -14.6,-21 -9.6,-33.4 2.6,-7.1 8.9,-13.7 15.7,-17.7 10.3,-6.5 22.6,-3.4 31.7,3.8 9.1,6.4 14.9,15.8 17.3,26.8 1.3,5.3 2.2,10.6 4.5,15.5 4.3,9 12.6,16 22.2,19.2 6,2.1 13.2,3.5 19.2,5.9 13.8,5.1 26.6,18.9 26.3,34 -1.5,17.7 -20.3,34.9 -38.3,29 h -0.4 z" />
+                            <path d="m 330.2,538.4 c -12.7,-3.8 -23.8,-16 -27.8,-29 -1.5,-4.8 -1.9,-9.6 -3.4,-14.4 -3.8,-12.5 -13.7,-22.7 -26.4,-26.5 -7.4,-2.4 -15.4,-3.5 -22.3,-7.3 -8.1,-4.3 -14.8,-11.1 -18.8,-19.3 -12,-21 13.9,-48.4 35.4,-41.9 11.9,4 23.2,15.1 26.9,27.3 3.9,12.7 4.1,24.1 15.2,33.3 11.2,11.2 25.3,9.4 38.2,16.5 13.6,8.2 25.2,23.5 19.4,40.2 -4.9,14.3 -20.9,25.1 -35.9,21.2 h -0.3 z" />
+                        </g>
+                    </svg>
+                </button>
+                <button class="utility-btn" id="localization-btn" aria-label="Language Settings" title="Language Settings" data-i18n-aria="languageSettings" data-i18n-title="languageSettings">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </button>
+                <button class="utility-btn" id="vision-btn" aria-label="Vision Accessibility" title="Vision Accessibility" data-i18n-aria="visionAccessibility" data-i18n-title="visionAccessibility">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="container">
+                <h1 class="title" data-i18n="signShare">Sign Share</h1>
+                <div class="button-group">
+                    <button class="neu-button" id="create-btn" data-i18n="createNewList">Create New List</button>
+                    <button class="neu-button" id="retrieve-btn" data-i18n="retrieveList">Retrieve List</button>
+                </div>
+                <div id="passphrase-input-container" class="hidden">
+                    <input type="text" id="passphrase-input" class="neu-input" placeholder="Enter passphrase" data-i18n="enterPassphrase">
+                    <button class="neu-button" id="load-btn" data-i18n="load">Load</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="entry-screen" class="screen">
+            <div class="utility-tray">
+                <button class="utility-btn" id="entry-settings-btn" aria-label="Resource Settings" title="Resource Settings" data-i18n-aria="resourceSettings" data-i18n-title="resourceSettings">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="container">
+                <div id="animation-layer"></div>
+                <div class="entry-area">
+                    <div id="autocomplete-container" class="autocomplete-container"></div>
+                    <div class="input-row">
+                        <input type="text" id="word-input" class="neu-input word-input" placeholder="Enter a word" data-i18n="enterWord">
+                        <button class="neu-button" id="enter-btn" data-i18n="enter">Enter</button>
+                        <button class="neu-button primary" id="save-btn" data-i18n="save">Save</button>
+                    </div>
+                    <div id="word-list" class="word-list">
+                        <div class="empty-state" id="empty-state">
+                            <p data-i18n="emptyStateMessage">Your words will appear here. Start typing above!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="list-view-screen" class="screen">
+            <button id="hamburger-btn" class="hamburger-btn hidden-desktop">☰</button>
+            <div id="sidebar" class="sidebar">
+                <h1 class="title small-title" data-i18n="signShare">Sign Share</h1>
+                <div id="saved-word-list" class="saved-word-list"></div>
+                <div class="control-tray">
+                    <button class="neu-button small" id="passphrase-btn" data-i18n="viewPassphrase">View Passphrase</button>
+                    <button class="neu-button small" id="edit-btn" data-i18n="editList">Edit List</button>
+                </div>
+            </div>
+            <div class="iframe-container">
+                <iframe id="sign-iframe" src="about:blank"></iframe>
+            </div>
+        </div>
+
+        <div id="passphrase-modal" class="modal hidden">
+            <div class="modal-content neu-card">
+                <button class="modal-close" id="modal-close-btn">×</button>
+                <h2 data-i18n="yourSharePhrase">Your Share Phrase</h2>
+                <div class="passphrase-display" id="passphrase-display"></div>
+                <div class="modal-actions">
+                    <button class="neu-button" id="copy-btn" data-i18n="copy">Copy</button>
+                    <button class="neu-button" id="share-btn" data-i18n="share">Share</button>
+                    <button class="neu-button primary" id="proceed-btn" data-i18n="proceed">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="language-panel" class="language-panel">
+        <div class="language-panel-header">
+            <h3 data-i18n="languageSettings">Language Settings</h3>
+            <button class="panel-close-btn" id="language-panel-close" aria-label="Close">×</button>
+        </div>
+        <div id="language-list" class="language-list"></div>
+    </div>
+
+    <div id="resources-panel" class="language-panel">
+        <div class="language-panel-header">
+            <h3 data-i18n="resourceSettings">Resource Settings</h3>
+            <button class="panel-close-btn" id="resources-panel-close" aria-label="Close">×</button>
+        </div>
+        <div id="resources-list" class="language-list"></div>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+    <script src="localization.js"></script>
+    <script src="toast.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

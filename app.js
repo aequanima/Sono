@@ -1,44 +1,11 @@
-let wordList = [];
-let currentWords = [];
+let subjectList = [];
+let currentSubjects = [];
 let currentPassphrase = '';
 let autocompleteIndex = -1;
 
-const signResources = {
-    lifeprint: { name: 'Lifeprint', domain: 'lifeprint.com', enabled: true },
-    spreadthesign: { name: 'SpreadTheSign', domain: 'spreadthesign.com', enabled: true }
-};
-
-async function loadWordList() {
-    const response = await fetch('words.json');
-    const rawWordList = await response.json();
-    
-    wordList = rawWordList.map(word => ({
-        word: word,
-        source: 'lifeprint'
-    }));
-    
-    try {
-        const stsResponse = await fetch('spreadthesign_words.json');
-        if (stsResponse.ok) {
-            const stsWordList = await stsResponse.json();
-            stsWordList.forEach(stsWord => {
-                if (!wordList.some(w => w.word === stsWord.word)) {
-                    wordList.push({
-                        word: stsWord.word,
-                        source: 'spreadthesign',
-                        id: stsWord.id
-                    });
-                }
-            });
-        }
-    } catch (e) {
-        console.log('SpreadTheSign words not loaded:', e);
-    }
-    
-    const savedResources = localStorage.getItem('signResources');
-    if (savedResources) {
-        Object.assign(signResources, JSON.parse(savedResources));
-    }
+async function loadSubjectList() {
+    const response = await fetch('subjects.json');
+    subjectList = await response.json();
 }
 
 function showScreen(screenId) {
@@ -77,9 +44,9 @@ const passphraseWords = [
     'rat', 'seal', 'toad', 'urchin', 'vole', 'wasp'
 ];
 
-function generatePassphrase(words) {
-    const indices = words.map(wordObj => {
-        const index = wordList.findIndex(w => w.word === wordObj.word);
+function generatePassphrase(subjects) {
+    const indices = subjects.map(subject => {
+        const index = subjectList.findIndex(s => s === subject);
         return index === -1 ? 0 : index;
     });
     
@@ -137,113 +104,76 @@ function decodePassphrase(passphrase) {
             number = number / base;
         }
         
-        const decodedWords = indices.map(index => {
-            if (index >= wordList.length) {
-                throw new Error('Invalid word index');
+        const decodedSubjects = indices.map(index => {
+            if (index >= subjectList.length) {
+                throw new Error('Invalid subject index');
             }
-            return wordList[index];
+            return subjectList[index];
         });
         
-        return decodedWords;
+        return decodedSubjects;
     } catch (e) {
         console.error('Decode error:', e);
         throw new Error('Invalid passphrase');
     }
 }
 
-function renderWordList() {
-    const container = document.getElementById('word-list');
+function renderSubjectList() {
+    const container = document.getElementById('subject-list');
     const emptyState = document.getElementById('empty-state');
     
-    if (currentWords.length === 0) {
+    if (currentSubjects.length === 0) {
         emptyState.classList.remove('hidden');
     } else {
         emptyState.classList.add('hidden');
     }
     
-    const existingItems = container.querySelectorAll('.word-item');
+    const existingItems = container.querySelectorAll('.subject-item');
     existingItems.forEach(item => item.remove());
     
-    currentWords.slice().reverse().forEach((wordObj, reverseIndex) => {
-        const index = currentWords.length - 1 - reverseIndex;
+    currentSubjects.slice().reverse().forEach((subject, reverseIndex) => {
+        const index = currentSubjects.length - 1 - reverseIndex;
         const item = document.createElement('div');
-        item.className = 'word-item';
-        item.dataset.word = wordObj.word;
+        item.className = 'subject-item';
+        item.dataset.subject = subject;
         
-        const wordText = document.createElement('span');
-        wordText.textContent = wordObj.word.replace(/_/g, ' ');
-        
-        const sourceSpan = document.createElement('span');
-        sourceSpan.className = 'autocomplete-item-source';
-        sourceSpan.textContent = `[${signResources[wordObj.source].domain}]`;
+        const subjectText = document.createElement('span');
+        subjectText.textContent = subject.replace(/_/g, ' ');
         
         const removeBtn = document.createElement('button');
-        removeBtn.className = 'remove-word-btn';
+        removeBtn.className = 'remove-subject-btn';
         removeBtn.innerHTML = '×';
         removeBtn.addEventListener('click', () => {
-            removeWordWithAnimation(item, index);
+            removeSubjectWithAnimation(item, index);
         });
         
-        item.appendChild(wordText);
-        item.appendChild(sourceSpan);
+        item.appendChild(subjectText);
         item.appendChild(removeBtn);
         container.appendChild(item);
     });
+    
+    updateSubjectCount();
 }
 
-function removeWordWithAnimation(item, index) {
+function removeSubjectWithAnimation(item, index) {
     gsap.to(item, {
         opacity: 0,
         duration: 0.3,
         ease: 'power2.in',
         onComplete: () => {
-            currentWords.splice(index, 1);
-            renderWordList();
+            currentSubjects.splice(index, 1);
+            renderSubjectList();
         }
     });
 }
 
-function renderSavedWordList() {
-    const container = document.getElementById('saved-word-list');
-    container.innerHTML = '';
-    currentWords.forEach(wordObj => {
-        const item = document.createElement('div');
-        item.className = 'saved-word-item';
-        
-        const wordText = document.createElement('span');
-        wordText.textContent = wordObj.word.replace(/_/g, ' ');
-
-        const sourceSpan = document.createElement('span');
-        sourceSpan.className = 'autocomplete-item-source';
-        sourceSpan.textContent = `[${signResources[wordObj.source].domain}]`;
-
-        item.appendChild(wordText);
-        item.appendChild(sourceSpan);
-
-        item.addEventListener('click', () => loadSignInIframe(wordObj));
-        container.appendChild(item);
-    });
-}
-
-function loadSignInIframe(wordObj) {
-    let url;
-    
-    if (wordObj && wordObj.source === 'spreadthesign' && wordObj.id) {
-        url = `https://spreadthesign.com/en.us/word/${wordObj.id}/${wordObj.word}/`;
-    } else {
-        const firstLetter = wordObj.word.charAt(0).toLowerCase();
-        url = `https://lifeprint.com/asl101/pages-signs/${firstLetter}/${wordObj.word}.htm`;
+function updateSubjectCount() {
+    const countDisplay = document.getElementById('subject-count');
+    if (countDisplay) {
+        countDisplay.textContent = `${currentSubjects.length} ${currentSubjects.length === 1 ? t('subject') : t('subjects')}`;
     }
-    
-    document.getElementById('sign-iframe').src = url;
-    
-    document.querySelectorAll('.saved-word-item').forEach(item => {
-        item.classList.remove('active');
-        if (item.textContent.replace(/ /g, '_') === wordObj.word) {
-            item.classList.add('active');
-        }
-    });
 }
+
 
 function showAutocomplete(value) {
     const container = document.getElementById('autocomplete-container');
@@ -254,9 +184,8 @@ function showAutocomplete(value) {
     }
     
     const normalizedValue = value.toLowerCase().replace(/ /g, '_');
-    const matches = wordList.filter(wordObj => 
-        signResources[wordObj.source].enabled && 
-        wordObj.word.toLowerCase().startsWith(normalizedValue)
+    const matches = subjectList.filter(subject => 
+        subject.toLowerCase().startsWith(normalizedValue)
     ).slice(0, 10);
     
     if (matches.length === 0) {
@@ -265,24 +194,19 @@ function showAutocomplete(value) {
     }
     
     container.innerHTML = '';
-    matches.forEach((wordObj, index) => {
+    matches.forEach((subject, index) => {
         const item = document.createElement('div');
         item.className = 'autocomplete-item';
         
-        const wordSpan = document.createElement('span');
-        wordSpan.className = 'autocomplete-item-word';
-        wordSpan.textContent = wordObj.word.replace(/_/g, ' ');
+        const subjectSpan = document.createElement('span');
+        subjectSpan.className = 'autocomplete-item-word';
+        subjectSpan.textContent = subject.replace(/_/g, ' ');
         
-        const sourceSpan = document.createElement('span');
-        sourceSpan.className = 'autocomplete-item-source';
-        sourceSpan.textContent = `[${signResources[wordObj.source].domain}]`;
-        
-        item.appendChild(wordSpan);
-        item.appendChild(sourceSpan);
+        item.appendChild(subjectSpan);
         item.style.opacity = '0';
         item.addEventListener('click', () => {
-            addWord(wordObj.word);
-            document.getElementById('word-input').value = '';
+            addSubject(subject);
+            document.getElementById('subject-input').value = '';
             container.classList.remove('active');
         });
         container.appendChild(item);
@@ -299,74 +223,54 @@ function showAutocomplete(value) {
     autocompleteIndex = -1;
 }
 
-function addWord(word) {
+function addSubject(subject) {
     const inputRow = document.querySelector('.input-row');
-    const words = word.split(',').map(w => w.trim().toLowerCase().replace(/ /g, '_')).filter(w => w !== '');
+    const subjects = subject.split(',').map(s => s.trim().toLowerCase().replace(/ /g, '_')).filter(s => s !== '');
 
-    if (words.length === 0) {
+    if (subjects.length === 0) {
         return;
     }
 
-    const addedWords = [];
-    const invalidWords = [];
+    const addedSubjects = [];
+    const invalidSubjects = [];
+    const duplicates = [];
 
-    words.forEach(w => {
-        const wordObj = wordList.find(wo => wo.word === w);
-        if (wordObj) {
-            if (!currentWords.some(cw => cw.word === w)) {
-                addedWords.push(wordObj);
+    subjects.forEach(s => {
+        if (subjectList.includes(s)) {
+            if (!currentSubjects.includes(s)) {
+                addedSubjects.push(s);
+            } else {
+                duplicates.push(s);
             }
         } else {
-            invalidWords.push(w);
+            invalidSubjects.push(s);
         }
     });
 
-
-    if (invalidWords.length > 0) {
+    if (invalidSubjects.length > 0) {
         inputRow.classList.add('error');
         setTimeout(() => inputRow.classList.remove('error'), 500);
+        showToast(t('invalidSubject'), 'error');
         return;
     }
 
-    if (addedWords.length > 0) {
-        currentWords.push(...addedWords);
-        renderWordList();
+    if (duplicates.length > 0) {
+        showToast(t('duplicateSubject'), 'error');
+        return;
+    }
+
+    if (addedSubjects.length > 0) {
+        currentSubjects.push(...addedSubjects);
+        renderSubjectList();
+        updateSubjectCount();
         inputRow.classList.add('success');
         setTimeout(() => inputRow.classList.remove('success'), 500);
     }
 }
 
-function animateWordAddition(word) {
-    const wordListContainer = document.getElementById('word-list');
-    const existingItems = Array.from(wordListContainer.querySelectorAll('.word-item'));
-
-    renderWordList();
-    
-    const newItem = wordListContainer.firstChild;
-    
-    if (!newItem) return;
-
-    const itemHeight = newItem.offsetHeight;
-    const gap = 12;
-
-    gsap.set(newItem, {
-        opacity: 0
-    });
-
-    if (existingItems.length > 0) {
-        gsap.set(existingItems, {
-        });
-    }
-
-    gsap.to(newItem, {
-        opacity: 1,
-        duration: 0.5,
-        ease: 'power2.out'
-    });
-}
 
 function showPassphraseModal() {
-    currentPassphrase = generatePassphrase(currentWords);
+    currentPassphrase = generatePassphrase(currentSubjects);
     document.getElementById('passphrase-display').textContent = currentPassphrase;
     document.getElementById('passphrase-modal').classList.remove('hidden');
 }
@@ -389,11 +293,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     initLocalization();
     
     try {
-        await loadWordList();
-        console.log('Word list loaded:', wordList.length, 'words');
+        await loadSubjectList();
+        console.log('Subject list loaded:', subjectList.length, 'subjects');
         
         initLanguagePanel();
-        initResourcesPanel();
+        initSettingsPanel();
         
         clearTimeout(loaderTimeout);
         
@@ -414,50 +318,49 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Failed to load word list:', error);
         clearTimeout(loaderTimeout);
         loadingOverlay.classList.add('hidden');
-        showToast('CRITICAL ERROR: Could not load the word list.', 'error', 5000);
+        showToast('CRITICAL ERROR: Could not load the subject list.', 'error', 5000);
         return;
     }
     
     const createBtn = document.getElementById('create-btn');
-    console.log('Create button element:', createBtn);
     createBtn.addEventListener('click', (e) => {
-        console.log('Create button clicked', e);
-        currentWords = [];
+        currentSubjects = [];
         showScreen('entry-screen');
+        updateSubjectCount();
         setTimeout(() => {
-            document.getElementById('word-input').focus();
+            document.getElementById('subject-input').focus();
         }, 100);
     });
     
     document.getElementById('retrieve-btn').addEventListener('click', () => {
-        console.log('Retrieve button clicked');
         document.getElementById('passphrase-input-container').classList.remove('hidden');
     });
     
-    document.getElementById('load-btn').addEventListener('click', () => {
+    document.getElementById('load-btn').addEventListener('click', async () => {
         const passphrase = document.getElementById('passphrase-input').value.trim().replace(/ /g, '-');
         try {
-            currentWords = decodePassphrase(passphrase);
-            renderSavedWordList();
-            showScreen('list-view-screen');
-            setTimeout(() => {
-                const sidebar = document.querySelector('.sidebar');
-                sidebar.classList.add('slide-in');
-                if (window.innerWidth > 768) {
-                    sidebar.classList.remove('mobile-open');
-                }
-            }, 50);
+            currentSubjects = decodePassphrase(passphrase);
+            
+            const gridSize = settingsManager.getSettings().gridSize;
+            if (currentSubjects.length < gridSize) {
+                showToast(`${t('needMoreSubjects')} ${gridSize} ${t('forGridSize')}`, 'error');
+                return;
+            }
+            
+            showScreen('game-screen');
+            showToast(t('loadingGame'), 'info');
+            await startGame(currentSubjects, settingsManager.getSettings());
         } catch (e) {
             showToast(t('invalidPassphrase'), 'error');
         }
     });
     
-    const wordInput = document.getElementById('word-input');
-    wordInput.addEventListener('input', (e) => {
+    const subjectInput = document.getElementById('subject-input');
+    subjectInput.addEventListener('input', (e) => {
         showAutocomplete(e.target.value);
     });
     
-    wordInput.addEventListener('keydown', (e) => {
+    subjectInput.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
             e.preventDefault();
             document.getElementById('save-btn').click();
@@ -498,25 +401,32 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else if (items.length === 1) {
                 items[0].click();
             } else {
-                addWord(wordInput.value);
-                wordInput.value = '';
+                addSubject(subjectInput.value);
+                subjectInput.value = '';
                 container.classList.remove('active');
             }
         }
     });
     
     document.getElementById('enter-btn').addEventListener('click', () => {
-        const word = wordInput.value;
-        addWord(word);
-        wordInput.value = '';
+        const subject = subjectInput.value;
+        addSubject(subject);
+        subjectInput.value = '';
         document.getElementById('autocomplete-container').classList.remove('active');
     });
     
     document.getElementById('save-btn').addEventListener('click', () => {
-        if (currentWords.length === 0) {
-            showToast(t('addAtLeastOneWord'), 'error');
+        if (currentSubjects.length === 0) {
+            showToast(t('addAtLeastOneSubject'), 'error');
             return;
         }
+        
+        const gridSize = settingsManager.getSettings().gridSize;
+        if (currentSubjects.length < gridSize) {
+            showToast(`${t('needMoreSubjects')} ${gridSize} ${t('forGridSize')}`, 'error');
+            return;
+        }
+        
         showPassphraseModal();
     });
     
@@ -539,13 +449,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     
     document.getElementById('share-btn').addEventListener('click', async () => {
-        const shareUrl = `https://dndrt.com/signs/${currentPassphrase}`;
+        const shareUrl = `${window.location.origin}${window.location.pathname}?passphrase=${currentPassphrase}`;
         
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'Sign Share - ASL Word List',
-                    text: 'Check out this ASL word list!',
+                    title: 'Sono - Sound Set',
+                    text: 'Check out this sound matching game!',
                     url: shareUrl
                 });
             } catch (e) {
@@ -559,17 +469,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     
-    document.getElementById('proceed-btn').addEventListener('click', () => {
+    document.getElementById('proceed-btn').addEventListener('click', async () => {
         hidePassphraseModal();
-        renderSavedWordList();
-        showScreen('list-view-screen');
-        setTimeout(() => {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.add('slide-in');
-            if (window.innerWidth > 768) {
-                sidebar.classList.remove('mobile-open');
-            }
-        }, 50);
+        showScreen('game-screen');
+        showToast(t('loadingGame'), 'info');
+        await startGame(currentSubjects, settingsManager.getSettings());
     });
     
     document.getElementById('modal-close-btn').addEventListener('click', () => {
@@ -580,23 +484,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         showPassphraseModal();
     });
     
-    document.getElementById('edit-btn').addEventListener('click', () => {
-        renderWordList();
-        showScreen('entry-screen');
-        setTimeout(() => {
-            document.getElementById('word-input').focus();
-        }, 100);
+    document.getElementById('settings-btn').addEventListener('click', () => {
+        document.getElementById('settings-panel').classList.toggle('open');
     });
     
-    document.getElementById('hamburger-btn').addEventListener('click', () => {
-        document.querySelector('.sidebar').classList.toggle('mobile-open');
-    });
+    const playAgainBtn = document.getElementById('play-again-btn');
+    if (playAgainBtn) {
+        playAgainBtn.addEventListener('click', async () => {
+            showToast(t('loadingGame'), 'info');
+            await startGame(currentSubjects, settingsManager.getSettings());
+        });
+    }
     
-    document.querySelector('.iframe-container').addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-            document.querySelector('.sidebar').classList.remove('mobile-open');
-        }
-    });
+    const replaySoundBtn = document.getElementById('replay-sound-btn');
+    if (replaySoundBtn) {
+        replaySoundBtn.addEventListener('click', () => {
+            if (currentGame) {
+                currentGame.replayCurrentSound();
+            }
+        });
+    }
     
     document.getElementById('logo-btn').addEventListener('click', () => {
         window.open('https://dndrt.com', '_blank');
@@ -621,13 +528,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.body.classList.add('high-contrast');
     }
     
-    document.getElementById('entry-settings-btn').addEventListener('click', () => {
-        const panel = document.getElementById('resources-panel');
-        panel.classList.toggle('open');
-    });
-    
-    document.getElementById('resources-panel-close').addEventListener('click', () => {
-        document.getElementById('resources-panel').classList.remove('open');
+    document.getElementById('settings-panel-close')?.addEventListener('click', () => {
+        document.getElementById('settings-panel').classList.remove('open');
     });
     
     document.addEventListener('click', (e) => {
@@ -639,12 +541,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             languagePanel.classList.remove('open');
         }
         
-        const resourcesPanel = document.getElementById('resources-panel');
-        const entrySettingsBtn = document.getElementById('entry-settings-btn');
-        if (resourcesPanel && resourcesPanel.classList.contains('open') && 
-            !resourcesPanel.contains(e.target) && 
-            entrySettingsBtn && !entrySettingsBtn.contains(e.target)) {
-            resourcesPanel.classList.remove('open');
+        const settingsPanel = document.getElementById('settings-panel');
+        const settingsBtn = document.getElementById('settings-btn');
+        if (settingsPanel && settingsPanel.classList.contains('open') && 
+            !settingsPanel.contains(e.target) && 
+            settingsBtn && !settingsBtn.contains(e.target)) {
+            settingsPanel.classList.remove('open');
         }
     });
 });
@@ -677,68 +579,26 @@ function initLanguagePanel() {
     });
 }
 
-function initResourcesPanel() {
-    const resourcesList = document.getElementById('resources-list');
-    
-    Object.keys(signResources).forEach(resourceKey => {
-        const resource = signResources[resourceKey];
-        const item = document.createElement('div');
-        item.className = 'language-item';
-        item.textContent = resource.name;
-        item.dataset.resource = resourceKey;
-        
-        if (resource.enabled) {
-            item.classList.add('active');
-        }
-        
-        item.addEventListener('click', () => {
-            resource.enabled = !resource.enabled;
-            item.classList.toggle('active');
-            
-            localStorage.setItem('signResources', JSON.stringify(signResources));
-        });
-        
-        resourcesList.appendChild(item);
-    });
-}
 
-function checkForPassphraseInURL() {
+async function checkForPassphraseInURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const passphraseParam = urlParams.get('passphrase');
     
     if (passphraseParam) {
         try {
-            currentWords = decodePassphrase(passphraseParam);
-            renderSavedWordList();
-            showScreen('list-view-screen');
-            setTimeout(() => {
-                const sidebar = document.querySelector('.sidebar');
-                sidebar.classList.add('slide-in');
-                if (window.innerWidth > 768) {
-                    sidebar.classList.remove('mobile-open');
-                }
-            }, 50);
+            currentSubjects = decodePassphrase(passphraseParam);
+            
+            const gridSize = settingsManager.getSettings().gridSize;
+            if (currentSubjects.length < gridSize) {
+                showToast(`${t('needMoreSubjects')} ${gridSize} ${t('forGridSize')}`, 'error');
+                return;
+            }
+            
+            showScreen('game-screen');
+            showToast(t('loadingGame'), 'info');
+            await startGame(currentSubjects, settingsManager.getSettings());
         } catch (e) {
             console.error('Invalid passphrase in URL:', e);
-            showToast(t('invalidPassphrase'), 'error');
-        }
-    }
-    
-    const pathMatch = window.location.pathname.match(/\/signs\/([a-z-]+)/);
-    if (pathMatch && pathMatch[1]) {
-        try {
-            currentWords = decodePassphrase(pathMatch[1]);
-            renderSavedWordList();
-            showScreen('list-view-screen');
-            setTimeout(() => {
-                const sidebar = document.querySelector('.sidebar');
-                sidebar.classList.add('slide-in');
-                if (window.innerWidth > 768) {
-                    sidebar.classList.remove('mobile-open');
-                }
-            }, 50);
-        } catch (e) {
-            console.error('Invalid passphrase in path:', e);
             showToast(t('invalidPassphrase'), 'error');
         }
     }

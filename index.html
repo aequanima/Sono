@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Share</title>
+    <title>Sono</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -36,7 +36,7 @@
                 </button>
             </div>
             <div class="container">
-                <h1 class="title" data-i18n="signShare">Sign Share</h1>
+                <h1 class="title" data-i18n="sono">Sono</h1>
                 <div class="button-group">
                     <button class="neu-button" id="create-btn" data-i18n="createNewList">Create New List</button>
                     <button class="neu-button" id="retrieve-btn" data-i18n="retrieveList">Retrieve List</button>
@@ -49,51 +49,56 @@
         </div>
 
         <div id="entry-screen" class="screen">
-            <div class="utility-tray">
-                <button class="utility-btn" id="entry-settings-btn" aria-label="Resource Settings" title="Resource Settings" data-i18n-aria="resourceSettings" data-i18n-title="resourceSettings">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="container">
-                <div id="animation-layer"></div>
-                <div class="entry-area">
-                    <div id="autocomplete-container" class="autocomplete-container"></div>
-                    <div class="input-row">
-                        <input type="text" id="word-input" class="neu-input word-input" placeholder="Enter a word" data-i18n="enterWord">
-                        <button class="neu-button" id="enter-btn" data-i18n="enter">Enter</button>
-                        <button class="neu-button primary" id="save-btn" data-i18n="save">Save</button>
-                    </div>
-                    <div id="word-list" class="word-list">
-                        <div class="empty-state" id="empty-state">
-                            <p data-i18n="emptyStateMessage">Your words will appear here. Start typing above!</p>
+            <div class="entry-screen-wrapper">
+                <div id="subject-count" class="subject-count-fixed">0 subjects</div>
+                <div class="container">
+                    <div id="animation-layer"></div>
+                    <div class="entry-area">
+                        <div id="autocomplete-container" class="autocomplete-container"></div>
+                        <div class="input-row">
+                            <input type="text" id="subject-input" class="neu-input subject-input" placeholder="Enter a subject" data-i18n="enterSubject">
+                            <button class="neu-button" id="enter-btn" data-i18n="enter">Enter</button>
+                            <button class="neu-button primary" id="save-btn" data-i18n="save">Save</button>
+                        </div>
+                        <div id="subject-list" class="subject-list">
+                            <div class="empty-state" id="empty-state">
+                                <p data-i18n="emptyStateMessage">Your subjects will appear here. Start typing above!</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="list-view-screen" class="screen">
-            <button id="hamburger-btn" class="hamburger-btn hidden-desktop">☰</button>
-            <div id="sidebar" class="sidebar">
-                <h1 class="title small-title" data-i18n="signShare">Sign Share</h1>
-                <div id="saved-word-list" class="saved-word-list"></div>
-                <div class="control-tray">
-                    <button class="neu-button small" id="passphrase-btn" data-i18n="viewPassphrase">View Passphrase</button>
-                    <button class="neu-button small" id="edit-btn" data-i18n="editList">Edit List</button>
+        <div id="game-screen" class="screen">
+            <div class="game-container">
+                <div class="game-header">
+                    <h1 class="title small-title" data-i18n="sono">Sono</h1>
+                    <div class="game-controls">
+                        <button class="neu-button small" id="replay-sound-btn" data-i18n="replaySound">Replay Sound</button>
+                        <button class="neu-button small" id="settings-btn" data-i18n="settings">Settings</button>
+                    </div>
                 </div>
-            </div>
-            <div class="iframe-container">
-                <iframe id="sign-iframe" src="about:blank"></iframe>
+                <div id="game-progress" class="game-progress"></div>
+                <div id="audio-indicator" class="audio-indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                </div>
+                <div id="card-grid" class="card-grid"></div>
+                <div id="game-complete-section" class="game-complete-section hidden">
+                    <button class="neu-button primary large" id="play-again-btn" data-i18n="playAgain">Play Again</button>
+                    <div id="game-stats" class="game-stats"></div>
+                </div>
             </div>
         </div>
 
         <div id="passphrase-modal" class="modal hidden">
             <div class="modal-content neu-card">
                 <button class="modal-close" id="modal-close-btn">×</button>
-                <h2 data-i18n="yourSharePhrase">Your Share Phrase</h2>
+                <h2 data-i18n="yourPassphrase">Your Passphrase</h2>
                 <div class="passphrase-display" id="passphrase-display"></div>
                 <div class="modal-actions">
                     <button class="neu-button" id="copy-btn" data-i18n="copy">Copy</button>
@@ -112,12 +117,69 @@
         <div id="language-list" class="language-list"></div>
     </div>
 
-    <div id="resources-panel" class="language-panel">
-        <div class="language-panel-header">
-            <h3 data-i18n="resourceSettings">Resource Settings</h3>
-            <button class="panel-close-btn" id="resources-panel-close" aria-label="Close">×</button>
+    <div id="settings-panel" class="settings-panel">
+        <div class="settings-panel-header">
+            <h3 data-i18n="gameSettings">Game Settings</h3>
+            <button class="panel-close-btn" id="settings-panel-close" aria-label="Close">×</button>
         </div>
-        <div id="resources-list" class="language-list"></div>
+        <div class="settings-content">
+            <div class="setting-group">
+                <label data-i18n="gridSize">Grid Size</label>
+                <select id="grid-size-select" class="neu-input">
+                    <option value="4">4 cards (2x2)</option>
+                    <option value="6" selected>6 cards (2x3)</option>
+                    <option value="9">9 cards (3x3)</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label data-i18n="visualMode">Visual Mode</label>
+                <select id="visual-mode-select" class="neu-input">
+                    <option value="graphic" selected data-i18n="graphics">Graphics</option>
+                    <option value="photos" data-i18n="photos">Photos</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label data-i18n="cardBehavior">Card Behavior</label>
+                <select id="card-behavior-select" class="neu-input">
+                    <option value="remove" selected data-i18n="removeCards">Remove Cards</option>
+                    <option value="crossout" data-i18n="crossOut">Cross Out</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label data-i18n="masterVolume">Sound Volume</label>
+                <input type="range" id="master-volume-slider" min="0" max="100" value="70" class="slider">
+            </div>
+            <div class="setting-group">
+                <label data-i18n="feedbackVolume">Feedback Volume</label>
+                <input type="range" id="feedback-volume-slider" min="0" max="100" value="50" class="slider">
+            </div>
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="cueing-enabled-checkbox">
+                    <span data-i18n="enableCueing">Enable Visual Cueing</span>
+                </label>
+            </div>
+            <div class="setting-group">
+                <label data-i18n="cueDelay">Cue Delay (ms)</label>
+                <input type="range" id="cue-delay-slider" min="0" max="5000" value="3000" step="500" class="slider">
+            </div>
+            <div class="setting-group">
+                <label data-i18n="cueIntensity">Cue Intensity</label>
+                <select id="cue-intensity-select" class="neu-input">
+                    <option value="subtle" data-i18n="subtle">Subtle</option>
+                    <option value="gentle" selected data-i18n="gentle">Gentle</option>
+                    <option value="obvious" data-i18n="obvious">Obvious</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label data-i18n="cueType">Cue Type</label>
+                <select id="cue-type-select" class="neu-input">
+                    <option value="glow" selected data-i18n="glow">Glow</option>
+                    <option value="wiggle" data-i18n="wiggle">Wiggle</option>
+                    <option value="bounce" data-i18n="bounce">Bounce</option>
+                </select>
+            </div>
+        </div>
     </div>
 
     <div id="loading-overlay" class="loading-overlay">
@@ -128,6 +190,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
     <script src="localization.js"></script>
     <script src="toast.js"></script>
+    <script src="audio.js"></script>
+    <script src="settings.js"></script>
+    <script src="cards.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

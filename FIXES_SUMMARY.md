@@ -173,6 +173,10 @@
 
 None\! All 20 identified issues have been addressed.
 
+## Gameplay Experience
+
+- **Game Complete Screen**: When the user wins, the play again and gameplay stats take the place of the gameplay grid at the center of the screen.
+
 ## Future Enhancements (Not Bugs)
 
 - Audio preloading for first-time playback

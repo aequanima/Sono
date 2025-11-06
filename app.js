@@ -118,7 +118,36 @@ function decodePassphrase(passphrase) {
     }
 }
 
-function renderSubjectList() {
+async function getSubjectImagePath(subject) {
+    const imageMode = settingsManager.getSettings().visualMode || 'graphic';
+    const basePath = `assets/images/${imageMode}/${subject}`;
+    const candidates = [
+        `${basePath}.png`,
+        `${basePath}0.png`,
+        `${basePath}1.png`,
+        `${basePath}2.png`,
+        `${basePath}3.png`,
+        `${basePath}4.png`,
+        `${basePath}5.png`,
+        `${basePath}6.png`,
+        `${basePath}7.png`,
+        `${basePath}8.png`,
+        `${basePath}9.png`
+    ];
+
+    for (const path of candidates) {
+        try {
+            const response = await fetch(path, { method: 'HEAD' });
+            if (response.ok) return path;
+        } catch (e) {
+            // Ignore errors and try the next candidate
+        }
+    }
+
+    return `${basePath}.png`; // Fallback to the default path
+}
+
+async function renderSubjectList() {
     const container = document.getElementById('subject-list');
     const emptyState = document.getElementById('empty-state');
     
@@ -131,12 +160,19 @@ function renderSubjectList() {
     const existingItems = container.querySelectorAll('.subject-item');
     existingItems.forEach(item => item.remove());
     
-    currentSubjects.slice().reverse().forEach((subject, reverseIndex) => {
+    for (const [reverseIndex, subject] of currentSubjects.slice().reverse().entries()) {
         const index = currentSubjects.length - 1 - reverseIndex;
         const item = document.createElement('div');
         item.className = 'subject-item';
         item.dataset.subject = subject;
         
+        const imagePath = await getSubjectImagePath(subject);
+        const img = document.createElement('img');
+        img.src = imagePath;
+        img.className = 'subject-item-image';
+        img.alt = subject;
+        img.addEventListener('click', () => previewSubjectSound(subject));
+
         const subjectText = document.createElement('span');
         subjectText.textContent = subject.replace(/_/g, ' ');
         
@@ -147,10 +183,11 @@ function renderSubjectList() {
             removeSubjectWithAnimation(item, index);
         });
         
+        item.appendChild(img);
         item.appendChild(subjectText);
         item.appendChild(removeBtn);
         container.appendChild(item);
-    });
+    }
     
     updateSubjectCount();
 }
@@ -165,6 +202,15 @@ function removeSubjectWithAnimation(item, index) {
             renderSubjectList();
         }
     });
+}
+
+async function previewSubjectSound(subject) {
+    try {
+        await audioManager.playSoundForSubject(subject);
+    } catch (error) {
+        console.error('Error playing sound:', error);
+        showToast(t('errorPlayingSound'), 'error');
+    }
 }
 
 function updateSubjectCount() {
@@ -488,22 +534,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('settings-panel').classList.toggle('open');
     });
     
-    const playAgainBtn = document.getElementById('play-again-btn');
-    if (playAgainBtn) {
-        playAgainBtn.addEventListener('click', async () => {
+    document.getElementById('entry-settings-btn')?.addEventListener('click', () => {
+        document.getElementById('settings-panel').classList.toggle('open');
+    });
+    
+    document.addEventListener('click', async (e) => {
+        if (e.target.id === 'play-again-btn' || e.target.closest('#play-again-btn')) {
             showToast(t('loadingGame'), 'info');
             await startGame(currentSubjects, settingsManager.getSettings());
-        });
-    }
-    
-    const replaySoundBtn = document.getElementById('replay-sound-btn');
-    if (replaySoundBtn) {
-        replaySoundBtn.addEventListener('click', () => {
+        }
+        
+        if (e.target.id === 'audio-indicator' || e.target.closest('#audio-indicator')) {
             if (currentGame) {
                 currentGame.replayCurrentSound();
             }
-        });
-    }
+        }
+    });
     
     document.getElementById('logo-btn').addEventListener('click', () => {
         window.open('https://dndrt.com', '_blank');
@@ -543,9 +589,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         const settingsPanel = document.getElementById('settings-panel');
         const settingsBtn = document.getElementById('settings-btn');
+        const entrySettingsBtn = document.getElementById('entry-settings-btn');
         if (settingsPanel && settingsPanel.classList.contains('open') && 
             !settingsPanel.contains(e.target) && 
-            settingsBtn && !settingsBtn.contains(e.target)) {
+            settingsBtn && !settingsBtn.contains(e.target) &&
+            entrySettingsBtn && !entrySettingsBtn.contains(e.target)) {
             settingsPanel.classList.remove('open');
         }
     });

@@ -710,6 +710,55 @@ body {
                 inset -4px -4px 8px var(--shadow-light);
 }
 
+.settings-icon-btn {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 3px 3px 6px var(--shadow-dark),
+                inset -3px -3px 6px var(--shadow-light);
+    transition: all 0.2s ease;
+    z-index: 100;
+}
+
+.settings-icon-btn svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--text-color);
+}
+
+.settings-icon-btn:hover {
+    color: var(--primary-blue);
+}
+
+.settings-icon-btn:hover svg {
+    stroke: var(--primary-blue);
+}
+
+.settings-icon-btn:active {
+    box-shadow: inset 4px 4px 8px var(--shadow-dark),
+                inset -4px -4px 8px var(--shadow-light);
+}
+
+.settings-icon-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.entry-settings-btn {
+    top: 5rem;
+}
+
 .language-panel {
     position: fixed;
     top: 0;
@@ -1105,13 +1154,25 @@ body {
     height: 80px;
     border-radius: 50%;
     background: var(--bg-color);
-    box-shadow: 6px 6px 12px var(--shadow-dark),
-                -6px -6px 12px var(--shadow-light);
+    border: none;
+    box-shadow: inset 3px 3px 6px var(--shadow-dark),
+                inset -3px -3px 6px var(--shadow-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.5;
+    opacity: 0.6;
     transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+}
+
+.audio-indicator:hover {
+    opacity: 0.8;
+}
+
+.audio-indicator:active {
+    box-shadow: inset 4px 4px 8px var(--shadow-dark),
+                inset -4px -4px 8px var(--shadow-light);
 }
 
 .audio-indicator svg {
@@ -1122,10 +1183,13 @@ body {
 
 .audio-indicator.playing {
     opacity: 1;
-    box-shadow: 6px 6px 12px var(--shadow-dark),
-                -6px -6px 12px var(--shadow-light),
-                inset 0 0 0 4px var(--primary-blue);
+    box-shadow: inset 3px 3px 6px var(--shadow-dark),
+                inset -3px -3px 6px var(--shadow-light);
     animation: pulse 1s ease-in-out infinite;
+}
+
+.audio-indicator.playing svg {
+    stroke: var(--success);
 }
 
 @keyframes pulse {
@@ -1135,28 +1199,27 @@ body {
 
 .card-grid {
     display: grid;
-    gap: clamp(0.5rem, 2vw, 1.5rem);
+    gap: 1rem;
     width: 100%;
-    height: fit-content;
-    max-height: calc(100vh - 300px);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .card-grid.grid-4 {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: min(80vw, 600px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .card-grid.grid-6 {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: min(85vw, 700px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .card-grid.grid-9 {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: min(90vw, 800px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .card {
+    width: 100%;
     aspect-ratio: 1;
     background: var(--bg-color);
     border-radius: 20px;
@@ -1390,11 +1453,25 @@ body {
                 -4px -4px 8px var(--shadow-light);
     padding: 1rem 1.5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     font-size: 1.1rem;
     color: var(--text-color);
     transition: all 0.2s ease;
+}
+
+.subject-item span {
+    flex-grow: 1;
+}
+
+.subject-item-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 1rem;
+    box-shadow: 2px 2px 4px var(--shadow-dark),
+                -2px -2px 4px var(--shadow-light);
+    cursor: pointer;
 }
 
 .remove-subject-btn {
@@ -1420,39 +1497,48 @@ body {
 }
 
 @media (max-height: 800px) {
-    .card-grid {
-        max-height: calc(100vh - 250px);
-        gap: clamp(0.5rem, 1.5vw, 1rem);
-    }
-    
     .card-grid.grid-4 {
-        max-width: min(70vw, 500px);
+        grid-template-columns: repeat(2, 140px);
+        gap: 0.75rem;
     }
     
     .card-grid.grid-6 {
-        max-width: min(75vw, 600px);
+        grid-template-columns: repeat(3, 140px);
+        gap: 0.75rem;
     }
     
     .card-grid.grid-9 {
-        max-width: min(80vw, 650px);
+        grid-template-columns: repeat(3, 150px);
+        gap: 0.75rem;
     }
 }
 
 @media (max-width: 768px) {
-    .card-grid {
-        gap: clamp(0.5rem, 1.5vw, 1rem);
-        padding: 0 0.5rem;
+    .card-grid.grid-4 {
+        grid-template-columns: repeat(2, 130px);
+        gap: 0.75rem;
     }
 
-    .card-grid.grid-6,
+    .card-grid.grid-6 {
+        grid-template-columns: repeat(2, 140px);
+        gap: 0.75rem;
+    }
+    
     .card-grid.grid-9 {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 90vw;
+        grid-template-columns: repeat(3, 110px);
+        gap: 0.75rem;
     }
 
     .settings-panel {
         width: 100%;
         right: -100%;
+    }
+
+    .settings-icon-btn {
+        top: 1rem;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
     }
 
     .game-container {
@@ -1525,6 +1611,10 @@ body {
 
 .game-complete-section.hidden {
     display: none;
+}
+
+.center-flex {
+    justify-content: center;
 }
 
 .neu-button.large {

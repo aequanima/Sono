@@ -332,8 +332,13 @@ class CardGame {
     showGameCompleteSection(timeTaken, accuracy, incorrectCount) {
         const section = document.getElementById('game-complete-section');
         const statsDisplay = document.getElementById('game-stats');
-        
-        if (section && statsDisplay) {
+        const grid = document.getElementById('card-grid');
+        const audioIndicator = document.getElementById('audio-indicator');
+
+        if (section && statsDisplay && grid) {
+            grid.classList.add('hidden');
+            if (audioIndicator) audioIndicator.classList.add('hidden');
+
             const minutes = Math.floor(timeTaken / 60);
             const seconds = timeTaken % 60;
             const timeStr = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
@@ -362,13 +367,20 @@ class CardGame {
             `;
             
             section.classList.remove('hidden');
+            section.classList.add('center-flex');
         }
     }
 
     hideGameCompleteSection() {
         const section = document.getElementById('game-complete-section');
-        if (section) {
+        const grid = document.getElementById('card-grid');
+        const audioIndicator = document.getElementById('audio-indicator');
+        
+        if (section && grid) {
             section.classList.add('hidden');
+            section.classList.remove('center-flex');
+            grid.classList.remove('hidden');
+            if (audioIndicator) audioIndicator.classList.remove('hidden');
         }
     }
 }
@@ -381,8 +393,14 @@ async function startGame(subjects, settings) {
     }
     
     const completeSection = document.getElementById('game-complete-section');
-    if (completeSection) {
+    const grid = document.getElementById('card-grid');
+    const audioIndicator = document.getElementById('audio-indicator');
+    
+    if (completeSection && grid) {
         completeSection.classList.add('hidden');
+        completeSection.classList.remove('center-flex');
+        grid.classList.remove('hidden');
+        if (audioIndicator) audioIndicator.classList.remove('hidden');
     }
     
     currentGame = new CardGame(subjects, settings);

@@ -756,7 +756,7 @@ body {
 }
 
 .entry-settings-btn {
-    top: 5rem;
+    top: 6rem;
 }
 
 .language-panel {
@@ -1539,6 +1539,10 @@ body {
         right: 1rem;
         width: 44px;
         height: 44px;
+    }
+
+    .entry-settings-btn {
+        top: 4rem;
     }
 
     .game-container {

@@ -63,13 +63,10 @@ function initSettingsPanel() {
     const cardBehaviorSelect = document.getElementById('card-behavior-select');
     const masterVolumeSlider = document.getElementById('master-volume-slider');
     const feedbackVolumeSlider = document.getElementById('feedback-volume-slider');
-    const audioIndicatorSelect = document.getElementById('audio-indicator-select');
     const cueingEnabledCheckbox = document.getElementById('cueing-enabled-checkbox');
     const cueDelaySlider = document.getElementById('cue-delay-slider');
     const cueIntensitySelect = document.getElementById('cue-intensity-select');
     const cueTypeSelect = document.getElementById('cue-type-select');
-    const successSoundCheckbox = document.getElementById('success-sound-checkbox');
-    const errorSoundCheckbox = document.getElementById('error-sound-checkbox');
 
     const settings = settingsManager.getSettings();
 
@@ -78,13 +75,10 @@ function initSettingsPanel() {
     if (cardBehaviorSelect) cardBehaviorSelect.value = settings.cardBehavior;
     if (masterVolumeSlider) masterVolumeSlider.value = settings.masterVolume * 100;
     if (feedbackVolumeSlider) feedbackVolumeSlider.value = settings.feedbackVolume * 100;
-    if (audioIndicatorSelect) audioIndicatorSelect.value = settings.audioIndicator;
     if (cueingEnabledCheckbox) cueingEnabledCheckbox.checked = settings.cueing.enabled;
     if (cueDelaySlider) cueDelaySlider.value = settings.cueing.delay;
     if (cueIntensitySelect) cueIntensitySelect.value = settings.cueing.intensity;
     if (cueTypeSelect) cueTypeSelect.value = settings.cueing.type;
-    if (successSoundCheckbox) successSoundCheckbox.checked = settings.successSound;
-    if (errorSoundCheckbox) errorSoundCheckbox.checked = settings.errorSound;
 
     if (gridSizeSelect) {
         gridSizeSelect.addEventListener('change', (e) => {
@@ -116,12 +110,6 @@ function initSettingsPanel() {
         });
     }
 
-    if (audioIndicatorSelect) {
-        audioIndicatorSelect.addEventListener('change', (e) => {
-            settingsManager.saveSettings({ audioIndicator: e.target.value });
-        });
-    }
-
     if (cueingEnabledCheckbox) {
         cueingEnabledCheckbox.addEventListener('change', (e) => {
             const cueing = { ...settings.cueing, enabled: e.target.checked };
@@ -147,18 +135,6 @@ function initSettingsPanel() {
         cueTypeSelect.addEventListener('change', (e) => {
             const cueing = { ...settings.cueing, type: e.target.value };
             settingsManager.saveSettings({ cueing });
-        });
-    }
-
-    if (successSoundCheckbox) {
-        successSoundCheckbox.addEventListener('change', (e) => {
-            settingsManager.saveSettings({ successSound: e.target.checked });
-        });
-    }
-
-    if (errorSoundCheckbox) {
-        errorSoundCheckbox.addEventListener('change', (e) => {
-            settingsManager.saveSettings({ errorSound: e.target.checked });
         });
     }
 }

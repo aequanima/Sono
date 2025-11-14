@@ -579,6 +579,8 @@ body {
                 inset 0 0 0 3px transparent;
     max-width: 500px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
 }
 
@@ -756,7 +758,7 @@ body {
 }
 
 .entry-settings-btn {
-    top: 5rem;
+    top: 2rem;
 }
 
 .language-panel {
@@ -942,16 +944,16 @@ body {
 
 .empty-state {
     position: absolute;
-    top: 50%;
+    top: calc(50% + 150px);
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     text-align: center;
     color: var(--text-color);
     opacity: 0.5;
     font-size: 1rem;
     padding: 2rem;
     pointer-events: none;
-    z-index: 1;
+    z-index: 5;
 }
 
 .empty-state.hidden {
@@ -1128,12 +1130,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
-    height: 100%;
-    padding: 1.5rem;
-    gap: 0.75rem;
+    height: 100vh;
+    padding: 0;
+    gap: 1rem;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .game-header {
@@ -1150,8 +1153,10 @@ body {
 }
 
 .audio-indicator {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
     border-radius: 50%;
     background: var(--bg-color);
     border: none;
@@ -1163,7 +1168,7 @@ body {
     opacity: 0.6;
     transition: all 0.3s ease;
     cursor: pointer;
-    margin-bottom: 1.5rem;
+    flex-shrink: 0;
 }
 
 .audio-indicator:hover {
@@ -1200,27 +1205,37 @@ body {
 .card-grid {
     display: grid;
     gap: 1rem;
-    width: 100%;
-    max-width: 900px;
     margin: 0 auto;
-    padding: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: center;
+    align-content: center;
 }
 
 .card-grid.grid-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, min(calc((100vw - 5rem) / 2), 25vh, 300px)));
 }
 
 .card-grid.grid-6 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, min(calc((100vw - 6rem) / 3), 25vh, 300px)));
 }
 
 .card-grid.grid-9 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, min(calc((100vw - 6rem) / 3), 20vh, 250px)));
+}
+
+.card-grid.grid-16 {
+    grid-template-columns: repeat(4, minmax(0, min(calc((100vw - 7rem) / 4), 18vh, 200px)));
+}
+
+.card-grid.grid-25 {
+    grid-template-columns: repeat(5, minmax(0, min(calc((100vw - 8rem) / 5), 15vh, 150px)));
 }
 
 .card {
+    aspect-ratio: 1 / 1;
     width: 100%;
-    aspect-ratio: 1;
+    height: 100%;
     background: var(--bg-color);
     border-radius: 20px;
     box-shadow: 8px 8px 16px var(--shadow-dark),
@@ -1566,7 +1581,7 @@ body {
 .subject-count-fixed {
     position: fixed;
     top: 2rem;
-    right: 2rem;
+    right: calc(2rem + 50px + 1rem);
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-color);
@@ -1581,7 +1596,7 @@ body {
 @media (max-width: 768px) {
     .subject-count-fixed {
         top: 1rem;
-        right: 1rem;
+        right: calc(1rem + 44px + 0.75rem);
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
     }

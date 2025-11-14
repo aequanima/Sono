@@ -137,7 +137,10 @@ class CardGame {
     }
 
     async replayCurrentSound() {
-        if (this.isPlaying || !this.currentSubject) return;
+        if (this.isPlaying || !this.currentSubject || this.isProcessingAnswer) return;
+
+        const activeCards = this.cards.filter(c => !c.removed);
+        if (activeCards.length === 0) return;
 
         this.isPlaying = true;
 
@@ -320,7 +323,6 @@ class CardGame {
     enableSettingsButton(enabled) {
         const settingsBtn = document.getElementById('settings-btn');
         if (settingsBtn) {
-            settingsBtn.disabled = !enabled;
             if (enabled) {
                 settingsBtn.classList.remove('disabled');
             } else {

@@ -77,12 +77,6 @@
         </div>
 
         <div id="game-screen" class="screen">
-            <button class="settings-icon-btn" id="settings-btn" aria-label="Settings" title="Settings">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
-            </button>
             <div class="game-container">
                 <button id="audio-indicator" class="audio-indicator" aria-label="Replay Sound" title="Replay Sound">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -121,18 +115,19 @@
         <div id="language-list" class="language-list"></div>
     </div>
 
-    <div id="settings-panel" class="settings-panel">
-        <div class="settings-panel-header">
-            <h3 data-i18n="gameSettings">Game Settings</h3>
-            <button class="panel-close-btn" id="settings-panel-close" aria-label="Close">×</button>
-        </div>
-        <div class="settings-content">
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content neu-card">
+            <button class="modal-close" id="settings-modal-close">×</button>
+            <h2 data-i18n="gameSettings">Game Settings</h2>
+            <div class="settings-content">
             <div class="setting-group">
                 <label data-i18n="gridSize">Grid Size</label>
                 <select id="grid-size-select" class="neu-input">
                     <option value="4">4 cards (2x2)</option>
                     <option value="6" selected>6 cards (2x3)</option>
                     <option value="9">9 cards (3x3)</option>
+                    <option value="16">16 cards (4x4)</option>
+                    <option value="25">25 cards (5x5)</option>
                 </select>
             </div>
             <div class="setting-group">
@@ -182,6 +177,7 @@
                     <option value="wiggle" data-i18n="wiggle">Wiggle</option>
                     <option value="bounce" data-i18n="bounce">Bounce</option>
                 </select>
+            </div>
             </div>
         </div>
     </div>

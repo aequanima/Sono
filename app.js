@@ -526,28 +526,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         hidePassphraseModal();
     });
     
-    document.getElementById('passphrase-btn').addEventListener('click', () => {
-        showPassphraseModal();
+    document.getElementById('entry-settings-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.getElementById('settings-modal').classList.remove('hidden');
     });
     
-    document.getElementById('settings-btn').addEventListener('click', () => {
-        document.getElementById('settings-panel').classList.toggle('open');
-    });
-    
-    document.getElementById('entry-settings-btn')?.addEventListener('click', () => {
-        document.getElementById('settings-panel').classList.toggle('open');
+    document.getElementById('audio-indicator')?.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        if (currentGame) {
+            await currentGame.replayCurrentSound();
+        }
     });
     
     document.addEventListener('click', async (e) => {
         if (e.target.id === 'play-again-btn' || e.target.closest('#play-again-btn')) {
             showToast(t('loadingGame'), 'info');
             await startGame(currentSubjects, settingsManager.getSettings());
-        }
-        
-        if (e.target.id === 'audio-indicator' || e.target.closest('#audio-indicator')) {
-            if (currentGame) {
-                currentGame.replayCurrentSound();
-            }
         }
     });
     
@@ -574,8 +568,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.body.classList.add('high-contrast');
     }
     
-    document.getElementById('settings-panel-close')?.addEventListener('click', () => {
-        document.getElementById('settings-panel').classList.remove('open');
+    document.getElementById('settings-modal-close')?.addEventListener('click', () => {
+        document.getElementById('settings-modal').classList.add('hidden');
     });
     
     document.addEventListener('click', (e) => {
@@ -587,15 +581,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             languagePanel.classList.remove('open');
         }
         
-        const settingsPanel = document.getElementById('settings-panel');
-        const settingsBtn = document.getElementById('settings-btn');
-        const entrySettingsBtn = document.getElementById('entry-settings-btn');
-        if (settingsPanel && settingsPanel.classList.contains('open') && 
-            !settingsPanel.contains(e.target) && 
-            settingsBtn && !settingsBtn.contains(e.target) &&
-            entrySettingsBtn && !entrySettingsBtn.contains(e.target)) {
-            settingsPanel.classList.remove('open');
-        }
     });
 });
 

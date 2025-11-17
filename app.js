@@ -193,6 +193,8 @@ function updateSubjectCount() {
     const countDisplay = document.getElementById('subject-count');
     if (countDisplay) {
         countDisplay.textContent = `${currentSubjects.length} ${currentSubjects.length === 1 ? t('subject') : t('subjects')}`;
+        countDisplay.classList.add('count-changed');
+        setTimeout(() => countDisplay.classList.remove('count-changed'), 400);
     }
 }
 

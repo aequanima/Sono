@@ -305,10 +305,35 @@ class CardGame {
         
         this.enableSettingsButton(true);
         showToast(t('gameComplete') + ` ${accuracy}%`, 'success', 3000);
+        this.createConfetti();
         
         setTimeout(() => {
             this.showGameCompleteSection(timeTaken, accuracy, incorrectCount);
         }, 1000);
+    }
+
+    createConfetti() {
+        const celebration = document.createElement('div');
+        celebration.className = 'game-complete-celebration';
+        document.body.appendChild(celebration);
+
+        const colors = ['#6b9bd1', '#a8c5e6', '#5cb85c', '#fc8181', '#ffd700', '#ff69b4'];
+        
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                celebration.appendChild(confetti);
+            }, i * 30);
+        }
+
+        setTimeout(() => {
+            celebration.remove();
+        }, 4000);
     }
 
     destroy() {

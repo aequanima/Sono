@@ -7,7 +7,7 @@ const defaultSettings = {
     audioIndicator: 'pulse',
     cueing: {
         enabled: false,
-        delay: 3000,
+        delay: 3,
         intensity: 'gentle',
         type: 'glow'
     },
@@ -76,7 +76,7 @@ function initSettingsPanel() {
     if (masterVolumeSlider) masterVolumeSlider.value = settings.masterVolume * 100;
     if (feedbackVolumeSlider) feedbackVolumeSlider.value = settings.feedbackVolume * 100;
     if (cueingEnabledCheckbox) cueingEnabledCheckbox.checked = settings.cueing.enabled;
-    if (cueDelaySlider) cueDelaySlider.value = settings.cueing.delay;
+    if (cueDelaySlider) cueDelaySlider.value = settings.cueing.delay / 1000;
     if (cueIntensitySelect) cueIntensitySelect.value = settings.cueing.intensity;
     if (cueTypeSelect) cueTypeSelect.value = settings.cueing.type;
 
@@ -119,7 +119,7 @@ function initSettingsPanel() {
 
     if (cueDelaySlider) {
         cueDelaySlider.addEventListener('input', (e) => {
-            const cueing = { ...settings.cueing, delay: parseInt(e.target.value) };
+            const cueing = { ...settings.cueing, delay: parseInt(e.target.value) * 1000 };
             settingsManager.saveSettings({ cueing });
         });
     }

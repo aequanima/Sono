@@ -304,7 +304,6 @@ class CardGame {
         const incorrectCount = this.totalAttempts - this.correctCount;
         
         this.enableSettingsButton(true);
-        showToast(t('gameComplete') + ` ${accuracy}%`, 'success', 3000);
         this.createConfetti();
         
         setTimeout(() => {
@@ -326,14 +325,14 @@ class CardGame {
                 confetti.style.left = Math.random() * 100 + '%';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.animationDuration = (Math.random() * 4 + 4) + 's';
                 celebration.appendChild(confetti);
             }, i * 30);
         }
 
         setTimeout(() => {
             celebration.remove();
-        }, 4000);
+        }, 8000);
     }
 
     destroy() {

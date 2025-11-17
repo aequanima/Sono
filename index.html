@@ -83,11 +83,7 @@
                             <button class="neu-button" id="enter-btn" data-i18n="enter">Enter</button>
                             <button class="neu-button primary" id="save-btn" data-i18n="save">Save</button>
                         </div>
-                        <div id="subject-list" class="subject-list">
-                            <div class="empty-state" id="empty-state">
-                                <p data-i18n="emptyStateMessage">Your subjects will appear here. Start typing above!</p>
-                            </div>
-                        </div>
+                        <div id="subject-list" class="subject-list"></div>
                     </div>
                 </div>
             </div>
@@ -183,8 +179,8 @@
                 </label>
             </div>
             <div class="setting-group">
-                <label data-i18n="cueDelay">Cue Delay (ms)</label>
-                <input type="range" id="cue-delay-slider" min="0" max="5000" value="3000" step="500" class="slider">
+                <label data-i18n="cueDelay">Cue Delay (seconds)</label>
+                <input type="range" id="cue-delay-slider" min="0" max="20" value="3" step="1" class="slider">
             </div>
             <div class="setting-group">
                 <label data-i18n="cueIntensity">Cue Intensity</label>

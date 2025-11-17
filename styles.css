@@ -47,32 +47,28 @@ body {
 }
 
 *::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--bg-color);
-    border-radius: 10px;
-    box-shadow: inset 2px 2px 4px var(--inlay-dark),
-                inset -2px -2px 4px var(--inlay-light);
+    background: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--bg-color);
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px var(--shadow-dark),
-                -2px -2px 4px var(--shadow-light);
+    background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(107, 155, 209, 0.4);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    box-shadow: 1px 1px 2px var(--shadow-dark),
-                -1px -1px 2px var(--shadow-light);
+    background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
+    box-shadow: 0 0 12px rgba(107, 155, 209, 0.6);
 }
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: var(--bg-color) var(--bg-color);
+    scrollbar-color: var(--primary-blue) transparent;
 }
 
 #app {
@@ -627,28 +623,24 @@ body {
 
 #settings-modal .modal-content::-webkit-scrollbar-track,
 #print-modal .modal-content::-webkit-scrollbar-track {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background-color: var(--bg-color);
-    box-shadow: inset 2px 2px 5px var(--shadow-dark),
-                inset -2px -2px 5px var(--shadow-light);
-    margin: 10px;
+    background: transparent;
+    margin: 20px 0;
 }
 
 #settings-modal .modal-content::-webkit-scrollbar-thumb,
 #print-modal .modal-content::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background-color: var(--bg-color);
-    box-shadow: 3px 3px 6px var(--shadow-dark),
-                -3px -3px 6px var(--shadow-light);
+    background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(107, 155, 209, 0.4);
+    border: 3px solid transparent;
+    background-clip: padding-box;
 }
 
 #settings-modal .modal-content::-webkit-scrollbar-thumb:hover,
 #print-modal .modal-content::-webkit-scrollbar-thumb:hover {
-    background-color: var(--bg-color);
-    box-shadow: 2px 2px 4px var(--shadow-dark),
-                -2px -2px 4px var(--shadow-light);
+    background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
+    box-shadow: 0 0 12px rgba(107, 155, 209, 0.6);
+    background-clip: padding-box;
 }
 
 .modal-content::before {
@@ -1533,6 +1525,49 @@ body {
     border-color: var(--primary-blue) var(--light-blue) var(--light-blue) var(--primary-blue);
 }
 
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 44px;
+    height: 24px;
+    background: var(--bg-color);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    box-shadow: inset 3px 3px 6px var(--shadow-dark),
+                inset -3px -3px 6px var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    background: var(--bg-color);
+    box-shadow: 2px 2px 4px var(--shadow-dark),
+                -2px -2px 4px var(--shadow-light);
+    transition: all 0.3s ease;
+    border: 2px solid;
+    border-color: var(--inlay-dark) var(--inlay-light) var(--inlay-light) var(--inlay-dark);
+}
+
+input[type="checkbox"]:checked {
+    box-shadow: inset 3px 3px 6px var(--shadow-dark),
+                inset -3px -3px 6px var(--shadow-light);
+}
+
+input[type="checkbox"]:checked::before {
+    left: 23px;
+    border-color: var(--primary-blue) var(--light-blue) var(--light-blue) var(--primary-blue);
+    box-shadow: 3px 3px 6px var(--shadow-dark),
+                -3px -3px 6px var(--shadow-light);
+}
+
 .subject-list {
     position: absolute;
     top: calc(50% + 90px);
@@ -1546,6 +1581,14 @@ body {
     flex-direction: column;
     gap: 0.75rem;
     padding: 1rem;
+}
+
+.subject-list::-webkit-scrollbar {
+    display: none;
+}
+
+.subject-list {
+    scrollbar-width: none;
 }
 
 .subject-item {

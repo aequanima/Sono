@@ -125,13 +125,6 @@ async function getSubjectImagePath(subject) {
 
 async function renderSubjectList() {
     const container = document.getElementById('subject-list');
-    const emptyState = document.getElementById('empty-state');
-    
-    if (currentSubjects.length === 0) {
-        emptyState.classList.remove('hidden');
-    } else {
-        emptyState.classList.add('hidden');
-    }
     
     const existingItems = container.querySelectorAll('.subject-item');
     existingItems.forEach(item => item.remove());

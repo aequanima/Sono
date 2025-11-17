@@ -18,39 +18,7 @@ class AudioManager {
     }
 
     async findAvailableSound(subject) {
-        const basePath = `assets/sounds/${subject}`;
-        const candidates = [
-            `${basePath}.mp3`,
-            `${basePath}0.mp3`,
-            `${basePath}1.mp3`,
-            `${basePath}2.mp3`,
-            `${basePath}3.mp3`,
-            `${basePath}4.mp3`,
-            `${basePath}5.mp3`,
-            `${basePath}6.mp3`,
-            `${basePath}7.mp3`,
-            `${basePath}8.mp3`,
-            `${basePath}9.mp3`
-        ];
-
-        const available = [];
-        
-        for (const path of candidates) {
-            try {
-                const response = await fetch(path, { method: 'HEAD' });
-                if (response.ok) {
-                    available.push(path);
-                }
-            } catch (e) {
-            }
-        }
-
-        if (available.length === 0) {
-            throw new Error(`No sound files found for subject: ${subject}`);
-        }
-
-        const randomIndex = Math.floor(Math.random() * available.length);
-        return available[randomIndex];
+        return `assets/sounds/${subject}.mp3`;
     }
 
     async playSoundForSubject(subject) {

@@ -77,6 +77,13 @@
         </div>
 
         <div id="game-screen" class="screen">
+            <button class="settings-icon-btn" id="print-btn" aria-label="Print Bingo Cards" title="Print Bingo Cards">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+            </button>
             <div class="game-container">
                 <button id="audio-indicator" class="audio-indicator" aria-label="Replay Sound" title="Replay Sound">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -186,12 +193,44 @@
         <div class="loading-spinner"></div>
     </div>
 
+    <div id="print-modal" class="modal hidden">
+        <div class="modal-content neu-card">
+            <button class="modal-close" id="print-modal-close">×</button>
+            <h2 data-i18n="printOptions">Print Options</h2>
+            <div class="settings-content">
+                <div class="setting-group">
+                    <label data-i18n="printType">Print Type</label>
+                    <select id="print-type-select" class="neu-input">
+                        <option value="bingo" selected data-i18n="bingoCards">Bingo Cards</option>
+                        <option value="cue3" data-i18n="cueCards3x3">Cue Cards (3×3")</option>
+                        <option value="cue4" data-i18n="cueCards4x4">Cue Cards (4×4")</option>
+                    </select>
+                </div>
+                <div id="bingo-options">
+                    <div class="setting-group">
+                        <label data-i18n="numberOfSheets">Number of Sheets</label>
+                        <input type="number" id="num-sheets" class="neu-input" min="1" max="100" value="1">
+                    </div>
+                    <div class="setting-group">
+                        <label data-i18n="gridSizePrint">Grid Size (n x n)</label>
+                        <input type="number" id="print-grid-size" class="neu-input" min="2" max="10" value="5">
+                        <small style="display: block; margin-top: 5px; color: #666;">Each sheet will have n×n cards</small>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="neu-button primary" id="generate-print-btn" data-i18n="generatePDF">Generate PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
     <script src="localization.js"></script>
     <script src="toast.js"></script>
     <script src="audio.js"></script>
     <script src="settings.js"></script>
+    <script src="print.js"></script>
     <script src="cards.js"></script>
     <script src="app.js"></script>
 </body>

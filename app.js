@@ -120,31 +120,7 @@ function decodePassphrase(passphrase) {
 
 async function getSubjectImagePath(subject) {
     const imageMode = settingsManager.getSettings().visualMode || 'graphic';
-    const basePath = `assets/images/${imageMode}/${subject}`;
-    const candidates = [
-        `${basePath}.png`,
-        `${basePath}0.png`,
-        `${basePath}1.png`,
-        `${basePath}2.png`,
-        `${basePath}3.png`,
-        `${basePath}4.png`,
-        `${basePath}5.png`,
-        `${basePath}6.png`,
-        `${basePath}7.png`,
-        `${basePath}8.png`,
-        `${basePath}9.png`
-    ];
-
-    for (const path of candidates) {
-        try {
-            const response = await fetch(path, { method: 'HEAD' });
-            if (response.ok) return path;
-        } catch (e) {
-            // Ignore errors and try the next candidate
-        }
-    }
-
-    return `${basePath}.png`; // Fallback to the default path
+    return `assets/images/${imageMode}/${subject}.png`;
 }
 
 async function renderSubjectList() {
@@ -570,6 +546,48 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     document.getElementById('settings-modal-close')?.addEventListener('click', () => {
         document.getElementById('settings-modal').classList.add('hidden');
+    });
+    
+    document.getElementById('print-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        printManager.setSubjects(currentSubjects, settingsManager.getSettings().visualMode);
+        document.getElementById('print-modal').classList.remove('hidden');
+    });
+    
+    document.getElementById('print-modal-close')?.addEventListener('click', () => {
+        document.getElementById('print-modal').classList.add('hidden');
+    });
+    
+    document.getElementById('print-type-select')?.addEventListener('change', (e) => {
+        const bingoOptions = document.getElementById('bingo-options');
+        if (e.target.value === 'bingo') {
+            bingoOptions.style.display = 'block';
+        } else {
+            bingoOptions.style.display = 'none';
+        }
+    });
+    
+    document.getElementById('generate-print-btn')?.addEventListener('click', async () => {
+        const printType = document.getElementById('print-type-select').value;
+        
+        if (printType === 'bingo') {
+            const numSheets = parseInt(document.getElementById('num-sheets').value);
+            const gridN = parseInt(document.getElementById('print-grid-size').value);
+            const totalCards = gridN * gridN;
+            
+            if (currentSubjects.length < totalCards) {
+                showToast(`Need at least ${totalCards} subjects for ${gridN}x${gridN} grid`, 'error');
+                return;
+            }
+            
+            await printManager.generateBingoCards(numSheets, gridN);
+        } else if (printType === 'cue3') {
+            await printManager.generateCueCards(3);
+        } else if (printType === 'cue4') {
+            await printManager.generateCueCards(4);
+        }
+        
+        document.getElementById('print-modal').classList.add('hidden');
     });
     
     document.addEventListener('click', (e) => {

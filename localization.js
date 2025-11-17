@@ -55,7 +55,15 @@ const translations = {
         forGridSize: "subjects for selected grid size",
         loadingGame: "Loading game...",
         replaySound: "Replay Sound",
-        cardsRemaining: "cards remaining"
+        cardsRemaining: "cards remaining",
+        printOptions: "Print Options",
+        printType: "Print Type",
+        bingoCards: "Bingo Cards",
+        cueCards3x3: "Cue Cards (3×3\")",
+        cueCards4x4: "Cue Cards (4×4\")",
+        numberOfSheets: "Number of Sheets",
+        gridSizePrint: "Grid Size (n × n)",
+        generatePDF: "Generate PDF"
     },
     zh: {
         name: "中文",

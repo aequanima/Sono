@@ -44,7 +44,80 @@ const passphraseWords = [
     'rat', 'seal', 'toad', 'urchin', 'vole', 'wasp'
 ];
 
-function generatePassphrase(subjects) {
+function encodeSettings(settings) {
+    const gridSizeMap = { 4: 0, 6: 1, 9: 2, 16: 3, 25: 4 };
+    const visualModeMap = { 'graphic': 0, 'photos': 1 };
+    const cardBehaviorMap = { 'remove': 0, 'crossout': 1 };
+    const cueIntensityMap = { 'subtle': 0, 'gentle': 1, 'obvious': 2 };
+    const cueTypeMap = { 'glow': 0, 'wiggle': 1, 'bounce': 2 };
+    
+    let encoded = BigInt(0);
+    
+    encoded = encoded * BigInt(5) + BigInt(gridSizeMap[settings.gridSize] || 1);
+    encoded = encoded * BigInt(2) + BigInt(visualModeMap[settings.visualMode] || 0);
+    encoded = encoded * BigInt(2) + BigInt(cardBehaviorMap[settings.cardBehavior] || 0);
+    encoded = encoded * BigInt(101) + BigInt(Math.round(settings.masterVolume * 100));
+    encoded = encoded * BigInt(101) + BigInt(Math.round(settings.feedbackVolume * 100));
+    encoded = encoded * BigInt(2) + BigInt(settings.cueing.enabled ? 1 : 0);
+    encoded = encoded * BigInt(21) + BigInt(settings.cueing.delay / 1000);
+    encoded = encoded * BigInt(3) + BigInt(cueIntensityMap[settings.cueing.intensity] || 1);
+    encoded = encoded * BigInt(3) + BigInt(cueTypeMap[settings.cueing.type] || 0);
+    
+    return encoded;
+}
+
+function decodeSettings(encoded) {
+    const gridSizes = [4, 6, 9, 16, 25];
+    const visualModes = ['graphic', 'photos'];
+    const cardBehaviors = ['remove', 'crossout'];
+    const cueIntensities = ['subtle', 'gentle', 'obvious'];
+    const cueTypes = ['glow', 'wiggle', 'bounce'];
+    
+    const cueType = cueTypes[Number(encoded % BigInt(3))];
+    encoded = encoded / BigInt(3);
+    
+    const cueIntensity = cueIntensities[Number(encoded % BigInt(3))];
+    encoded = encoded / BigInt(3);
+    
+    const cueDelay = Number(encoded % BigInt(21)) * 1000;
+    encoded = encoded / BigInt(21);
+    
+    const cueEnabled = Number(encoded % BigInt(2)) === 1;
+    encoded = encoded / BigInt(2);
+    
+    const feedbackVolume = Number(encoded % BigInt(101)) / 100;
+    encoded = encoded / BigInt(101);
+    
+    const masterVolume = Number(encoded % BigInt(101)) / 100;
+    encoded = encoded / BigInt(101);
+    
+    const cardBehavior = cardBehaviors[Number(encoded % BigInt(2))];
+    encoded = encoded / BigInt(2);
+    
+    const visualMode = visualModes[Number(encoded % BigInt(2))];
+    encoded = encoded / BigInt(2);
+    
+    const gridSize = gridSizes[Number(encoded % BigInt(5))];
+    
+    return {
+        gridSize,
+        visualMode,
+        cardBehavior,
+        masterVolume,
+        feedbackVolume,
+        audioIndicator: 'pulse',
+        cueing: {
+            enabled: cueEnabled,
+            delay: cueDelay,
+            intensity: cueIntensity,
+            type: cueType
+        },
+        successSound: true,
+        errorSound: true
+    };
+}
+
+function generatePassphrase(subjects, settings) {
     const indices = subjects.map(subject => {
         const index = subjectList.findIndex(s => s === subject);
         return index === -1 ? 0 : index;
@@ -58,6 +131,9 @@ function generatePassphrase(subjects) {
     }
     
     number = number * BigInt(2048) + BigInt(indices.length);
+    
+    const settingsEncoded = encodeSettings(settings);
+    number = number * BigInt(1000000000) + settingsEncoded;
     
     const passphraseWordList = [];
     const passphraseBase = BigInt(passphraseWords.length);
@@ -78,7 +154,7 @@ function generatePassphrase(subjects) {
 function decodePassphrase(passphrase) {
     try {
         if (!passphrase || passphrase.trim() === '') {
-            return [];
+            return { subjects: [], settings: null };
         }
         const parts = passphrase.split('-');
         let number = BigInt(0);
@@ -90,6 +166,14 @@ function decodePassphrase(passphrase) {
                 throw new Error(`Invalid word in passphrase: ${part}`);
             }
             number = number * passphraseBase + BigInt(wordIndex);
+        }
+        
+        const settingsEncoded = number % BigInt(1000000000);
+        number = number / BigInt(1000000000);
+        
+        let decodedSettings = null;
+        if (settingsEncoded > BigInt(0)) {
+            decodedSettings = decodeSettings(settingsEncoded);
         }
         
         const wordCount = Number(number % BigInt(2048));
@@ -111,7 +195,7 @@ function decodePassphrase(passphrase) {
             return subjectList[index];
         });
         
-        return decodedSubjects;
+        return { subjects: decodedSubjects, settings: decodedSettings };
     } catch (e) {
         console.error('Decode error:', e);
         throw new Error('Invalid passphrase');
@@ -289,7 +373,7 @@ function addSubject(subject) {
 
 
 function showPassphraseModal() {
-    currentPassphrase = generatePassphrase(currentSubjects);
+    currentPassphrase = generatePassphrase(currentSubjects, settingsManager.getSettings());
     document.getElementById('passphrase-display').textContent = currentPassphrase;
     document.getElementById('passphrase-modal').classList.remove('hidden');
 }
@@ -358,7 +442,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('load-btn').addEventListener('click', async () => {
         const passphrase = document.getElementById('passphrase-input').value.trim().replace(/ /g, '-');
         try {
-            currentSubjects = decodePassphrase(passphrase);
+            const decoded = decodePassphrase(passphrase);
+            currentSubjects = decoded.subjects;
+            
+            if (decoded.settings) {
+                settingsManager.saveSettings(decoded.settings);
+                initSettingsPanel();
+            }
             
             const gridSize = settingsManager.getSettings().gridSize;
             if (currentSubjects.length < gridSize) {
@@ -635,7 +725,13 @@ async function checkForPassphraseInURL() {
     
     if (passphraseParam) {
         try {
-            currentSubjects = decodePassphrase(passphraseParam);
+            const decoded = decodePassphrase(passphraseParam);
+            currentSubjects = decoded.subjects;
+            
+            if (decoded.settings) {
+                settingsManager.saveSettings(decoded.settings);
+                initSettingsPanel();
+            }
             
             const gridSize = settingsManager.getSettings().gridSize;
             if (currentSubjects.length < gridSize) {

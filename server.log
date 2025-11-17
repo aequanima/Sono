@@ -2703,3 +2703,178 @@
 ::1 - - [17/Nov/2025 11:13:28] "GET /assets/images/photos/cat.png HTTP/1.1" 200 -
 ::1 - - [17/Nov/2025 11:13:29] "GET /assets/images/photos/pig.png HTTP/1.1" 200 -
 ::1 - - [17/Nov/2025 11:13:30] "GET /assets/images/photos/bird.png HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:14:04] "GET / HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:14:04] "GET /styles.css HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:14:04] "GET /app.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/dog9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/cat8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/pig9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "HEAD /assets/images/photos/bird9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:07] "GET /assets/sounds/bird.mp3 HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:14:07] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:07] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/dog9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/cat8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/bird9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "HEAD /assets/images/photos/pig9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:34] "GET /assets/sounds/dog.mp3 HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:14:34] code 404, message File not found
+::1 - - [17/Nov/2025 11:14:34] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:14:39] "GET /assets/sounds/pig.mp3 HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:18:15] "GET / HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:18:15] "GET /styles.css HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:18:15] "GET /cards.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:18:15] "GET /settings.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:18:15] "GET /app.js HTTP/1.1" 200 -

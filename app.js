@@ -277,6 +277,8 @@ function addSubject(subject) {
     }
 
     if (duplicates.length > 0) {
+        inputRow.classList.add('error');
+        setTimeout(() => inputRow.classList.remove('error'), 500);
         showToast(t('duplicateSubject'), 'error');
         return;
     }

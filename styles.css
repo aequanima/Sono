@@ -231,7 +231,7 @@ body {
 }
 
 .input-row.error {
-    animation: wiggle 0.3s ease;
+    animation: wiggle 0.5s ease;
 }
 
 .input-row.success .neu-input {
@@ -260,10 +260,12 @@ body {
 
 @keyframes wiggle {
     0%, 100% { transform: translate(-50%, -50%) translateX(0); }
-    20% { transform: translate(-50%, -50%) translateX(-10px); }
-    40% { transform: translate(-50%, -50%) translateX(10px); }
-    60% { transform: translate(-50%, -50%) translateX(-10px); }
-    80% { transform: translate(-50%, -50%) translateX(10px); }
+    15% { transform: translate(-50%, -50%) translateX(-15px); }
+    30% { transform: translate(-50%, -50%) translateX(15px); }
+    45% { transform: translate(-50%, -50%) translateX(-15px); }
+    60% { transform: translate(-50%, -50%) translateX(15px); }
+    75% { transform: translate(-50%, -50%) translateX(-10px); }
+    90% { transform: translate(-50%, -50%) translateX(10px); }
 }
 
 @keyframes wiggle-success {
@@ -1365,10 +1367,10 @@ body {
 }
 
 .card.cue.cue-wiggle {
-    animation: wiggle 0.5s ease-in-out infinite;
+    animation: card-wiggle 0.5s ease-in-out infinite;
 }
 
-@keyframes wiggle {
+@keyframes card-wiggle {
     0%, 100% { transform: rotate(0deg); }
     25% { transform: rotate(-3deg); }
     75% { transform: rotate(3deg); }

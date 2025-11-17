@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'Sono - Sound Set',
+                    title: 'Sonō - Sound Set',
                     text: 'Check out this sound matching game!',
                     url: shareUrl
                 });
@@ -572,15 +572,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (printType === 'bingo') {
             const numSheets = parseInt(document.getElementById('num-sheets').value);
-            const gridN = parseInt(document.getElementById('print-grid-size').value);
-            const totalCards = gridN * gridN;
+            const rows = parseInt(document.getElementById('print-grid-rows').value);
+            const cols = parseInt(document.getElementById('print-grid-cols').value);
+            const totalCards = rows * cols;
             
             if (currentSubjects.length < totalCards) {
-                showToast(`Need at least ${totalCards} subjects for ${gridN}x${gridN} grid`, 'error');
+                showToast(`Need at least ${totalCards} subjects for ${rows}×${cols} grid`, 'error');
                 return;
             }
             
-            await printManager.generateBingoCards(numSheets, gridN);
+            await printManager.generateBingoCards(numSheets, rows, cols);
         } else if (printType === 'cue3') {
             await printManager.generateCueCards(3);
         } else if (printType === 'cue4') {

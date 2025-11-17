@@ -1,8 +1,8 @@
 const translations = {
     en: {
         name: "English",
-        sono: "Sono",
-        pageTitle: "Sono - Sound Matching Game",
+        sono: "Sonō",
+        pageTitle: "Sonō - Sound Matching Game",
         createNewList: "Create New Set",
         retrieveList: "Retrieve Set",
         enterPassphrase: "Enter passphrase",
@@ -62,7 +62,8 @@ const translations = {
         cueCards3x3: "Cue Cards (3×3\")",
         cueCards4x4: "Cue Cards (4×4\")",
         numberOfSheets: "Number of Sheets",
-        gridSizePrint: "Grid Size (n × n)",
+        gridRows: "Rows",
+        gridColumns: "Columns",
         generatePDF: "Generate PDF"
     },
     zh: {

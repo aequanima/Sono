@@ -18,15 +18,15 @@ class PrintManager {
         return shuffled;
     }
 
-    async generateBingoCards(numSheets, gridN) {
-        const totalCards = gridN * gridN;
+    async generateBingoCards(numSheets, rows, cols) {
+        const totalCards = rows * cols;
         const printWindow = window.open('', '_blank');
         
         printWindow.document.write(`
             <!DOCTYPE html>
             <html>
             <head>
-                <title>Sono Bingo Cards</title>
+                <title>Sonō Bingo Cards</title>
                 <style>
                     @page {
                         size: letter;
@@ -62,16 +62,17 @@ class PrintManager {
                     
                     .bingo-grid {
                         display: grid;
-                        grid-template-columns: repeat(${gridN}, 1fr);
+                        grid-template-columns: repeat(${cols}, 1fr);
+                        grid-template-rows: repeat(${rows}, 1fr);
                         gap: 10px;
                         max-width: 7in;
                         max-height: 7in;
                         width: 100%;
-                        aspect-ratio: 1;
                     }
                     
                     .bingo-card {
                         border: 2px solid #333;
+                        border-radius: 0.25in;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -110,7 +111,7 @@ class PrintManager {
             
             printWindow.document.write(`
                 <div class="bingo-sheet">
-                    <div class="bingo-title">SONO BINGO</div>
+                    <div class="bingo-title">SONŌ BINGO</div>
                     <div class="bingo-grid">
             `);
             
@@ -157,7 +158,7 @@ class PrintManager {
             <!DOCTYPE html>
             <html>
             <head>
-                <title>Sono Cue Cards</title>
+                <title>Sonō Cue Cards</title>
                 <style>
                     @page {
                         size: letter;
@@ -191,7 +192,7 @@ class PrintManager {
                         width: ${cardSizeIn};
                         height: ${cardSizeIn};
                         border: 2px solid #333;
-                        border-radius: 8px;
+                        border-radius: 0.25in;
                         display: flex;
                         flex-direction: column;
                         align-items: center;

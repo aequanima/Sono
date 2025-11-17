@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sono</title>
+    <title>Sonō - Sound Matching Game for Early Intervention Therapy</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sono (Sonō) is a free sound matching game for toddlers in early intervention therapy. Build positive associations with sounds through controlled auditory discrimination activities.">
+    <meta name="keywords" content="sono, sonō, sound matching game, auditory discrimination, early intervention, therapy game, toddler therapy, sound therapy, autism therapy, sensory processing, speech therapy, sound sensitivity">
+    <meta name="author" content="Dendrite AT">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sonō - Sound Matching Game for Therapy">
+    <meta property="og:description" content="Free auditory discrimination game for toddlers. Help children build positive associations with sounds through controlled matching activities.">
+    <meta property="og:url" content="https://dndrt.com/sono">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sonō - Sound Matching Game">
+    <meta name="twitter:description" content="Free auditory discrimination game for early intervention therapy with toddlers.">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -36,7 +53,7 @@
                 </button>
             </div>
             <div class="container">
-                <h1 class="title" data-i18n="sono">Sono</h1>
+                <h1 class="title" data-i18n="sono">Sonō</h1>
                 <div class="button-group">
                     <button class="neu-button" id="create-btn" data-i18n="createNewList">Create New List</button>
                     <button class="neu-button" id="retrieve-btn" data-i18n="retrieveList">Retrieve List</button>
@@ -212,9 +229,12 @@
                         <input type="number" id="num-sheets" class="neu-input" min="1" max="100" value="1">
                     </div>
                     <div class="setting-group">
-                        <label data-i18n="gridSizePrint">Grid Size (n x n)</label>
-                        <input type="number" id="print-grid-size" class="neu-input" min="2" max="10" value="5">
-                        <small style="display: block; margin-top: 5px; color: #666;">Each sheet will have n×n cards</small>
+                        <label data-i18n="gridRows">Rows</label>
+                        <input type="number" id="print-grid-rows" class="neu-input" min="2" max="10" value="5">
+                    </div>
+                    <div class="setting-group">
+                        <label data-i18n="gridColumns">Columns</label>
+                        <input type="number" id="print-grid-cols" class="neu-input" min="2" max="10" value="5">
                     </div>
                 </div>
                 <div class="modal-actions">

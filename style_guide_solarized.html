@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Share - Master Style Reference</title>
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('sign-share-theme');
+                if (theme) {
+                    document.documentElement.classList.add(theme);
+                }
+            } catch (e) {
+                console.error('Could not apply theme from localStorage', e);
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@600;700&display=fallback" rel="stylesheet">
+    <style>
+        /* --- Core Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* solAArized Light Theme (WCAG AA Compliant) */
+            --bg-color: #eee8d5;
+            --text-color: #4f6066;
+            --text-emphasis: #3a494e;
+            --primary-blue: #1874bb;
+            --light-blue: #1d9086;
+            --shadow-light: #fdf6e3;
+            --shadow-dark: #8394a1;
+            --inlay-light: #fdf6e3;
+            --inlay-dark: #8394a1;
+            --success: #6b8700;
+            --error: #b00020;
+            --warning: #9e7700;
+            --accent-orange: #b64a16;
+            --accent-teal: #006b63;
+            --accent-indigo: #1a5a99;
+        }
+
+        .dark-theme {
+            --bg-color: #073642;
+            --text-color: #9bc1c2;
+            --text-emphasis: #b8d5d6;
+            --primary-blue: #4da7e0;
+            --light-blue: #32c1b6;
+            --shadow-light: #6c8b91;
+            --shadow-dark: #002b36;
+            --inlay-light: #6c8b91;
+            --inlay-dark: #002b36;
+            --success: #9ebe2d;
+            --error: #ff5577;
+            --warning: #cca01a;
+            --accent-orange: #e76a2a;
+            --accent-teal: #3dd4c7;
+            --accent-indigo: #5b9fd9;
+        }
+
+        .high-contrast {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --text-emphasis: #000000;
+            --primary-blue: #0066cc;
+            --light-blue: #0066cc;
+            --shadow-light: #dddddd;
+            --shadow-dark: #333333;
+            --inlay-light: #eeeeee;
+            --inlay-dark: #666666;
+            --success: #008800;
+            --error: #ff0000;
+            --warning: #996600;
+            --accent-orange: #cc5500;
+            --accent-magenta: #990099;
+            --accent-violet: #6633cc;
+        }
+        
+        .high-contrast *:not(.language-panel) {
+            transition: none !important;
+            animation: none !important;
+        }
+
+        body {
+            font-family: 'Onest', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-weight: 600;
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow: auto;
+        }
+
+        *::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: var(--bg-color);
+            border-radius: 10px;
+            box-shadow: inset 2px 2px 4px var(--inlay-dark),
+                        inset -2px -2px 4px var(--inlay-light);
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: var(--bg-color);
+            border-radius: 10px;
+            box-shadow: 2px 2px 4px var(--shadow-dark),
+                        -2px -2px 4px var(--shadow-light);
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+            box-shadow: 1px 1px 2px var(--shadow-dark),
+                        -1px -1px 2px var(--shadow-light);
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--bg-color) var(--bg-color);
+        }
+
+        .neu-button {
+            background: var(--bg-color);
+            border: none;
+            padding: 1.5rem 3rem;
+            border-radius: 12px;
+            color: var(--text-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 6px 6px 12px var(--shadow-dark),
+                        -6px -6px 12px var(--shadow-light),
+                        inset 0 0 0 2px transparent;
+            transition: all 0.2s ease;
+            position: relative;
+            pointer-events: auto;
+            z-index: 1;
+        }
+
+        .neu-button::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border-radius: 8px;
+            border: 3px solid;
+            border-color: var(--primary-blue) var(--light-blue) var(--light-blue) var(--primary-blue);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .neu-button:hover {
+            box-shadow: 4px 4px 8px var(--shadow-dark),
+                        -4px -4px 8px var(--shadow-light);
+        }
+
+        .neu-button:active {
+            box-shadow: inset 3px 3px 6px var(--shadow-dark),
+                        inset -3px -3px 6px var(--shadow-light);
+            transform: scale(0.98);
+        }
+
+        .neu-button.primary {
+            background: var(--bg-color);
+            color: var(--text-color);
+            box-shadow: 6px 6px 12px var(--shadow-dark),
+                        -6px -6px 12px var(--shadow-light),
+                        inset 0 0 0 2px transparent;
+        }
+
+        .neu-button.primary::before {
+            border-color: var(--success) var(--light-blue) var(--light-blue) var(--success);
+        }
+
+        .neu-button.primary:active {
+            box-shadow: inset 3px 3px 6px var(--shadow-dark),
+                        inset -3px -3px 6px var(--shadow-light);
+        }
+
+        .neu-button.small {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        .neu-card {
+            background: var(--bg-color);
+            border-radius: 12px;
+            box-shadow: 6px 6px 12px var(--shadow-dark),
+                        -6px -6px 12px var(--shadow-light);
+        }
+
+        .neu-input {
+            background: var(--bg-color);
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            box-shadow:
+                inset 3px 3px 6px var(--inlay-dark),
+                inset -3px -3px 6px var(--shadow-light);
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            outline: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .neu-input::placeholder {
+            color: var(--text-emphasis);
+            opacity: 0.6;
+        }
+
+        .neu-input:focus {
+            box-shadow:
+                inset 4px 4px 8px var(--inlay-dark),
+                inset -4px -4px 8px var(--inlay-light),
+                0 0 0 2px var(--primary-blue);
+        }
+
+        .utility-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                        inset -2px -2px 5px var(--shadow-light);
+            transition: all 0.2s ease;
+        }
+
+        .utility-btn svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .utility-btn:hover {
+            color: var(--primary-blue);
+        }
+
+        .utility-btn:active {
+            box-shadow: inset 4px 4px 8px var(--shadow-dark),
+                        inset -4px -4px 8px var(--shadow-light);
+        }
+        
+        .icon-btn svg path, .icon-btn svg line, .icon-btn svg circle { 
+            fill: none; 
+            stroke: currentColor; 
+        }
+
+        .toast {
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 6px 6px 12px var(--shadow-dark),
+                        -6px -6px 12px var(--shadow-light);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toast svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            stroke-width: 2.5;
+        }
+
+        .toast.toast-success {
+            color: var(--success);
+        }
+
+        .toast.toast-error {
+            color: var(--error);
+        }
+
+        .toast.toast-info {
+            color: var(--primary-blue);
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            box-shadow: 6px 6px 12px var(--shadow-dark),
+                        -6px -6px 12px var(--shadow-light);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 6px 6px 12px var(--shadow-dark),
+                            -6px -6px 12px var(--shadow-light);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 8px 8px 16px var(--shadow-dark),
+                            -8px -8px 16px var(--shadow-light);
+            }
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            width: 70px;
+            height: 70px;
+            z-index: 100;
+        }
+
+        .logo-container svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: scale(1);
+        }
+
+        .logo-container svg g {
+            filter: url(#double-inset-shadow);
+        }
+
+        .logo-container svg path {
+            fill: var(--bg-color, #eee8d5); /* fallback ensures immediate fill */
+        }
+
+        #contrast-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 100;
+        }
+
+        #style-guide-container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        section {
+            margin-bottom: 4rem;
+        }
+        h1.main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--primary-blue);
+        }
+        p.subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            color: var(--text-color);
+        }
+        h2.level-1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+        h3.level-2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        .component-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1rem 0;
+        }
+        .component-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .color-swatch {
+            width: 100px; height: 100px; border-radius: 12px;
+            box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+            margin: 0 auto;
+        }
+        .swatch-label { margin-top: 0.75rem; font-size: 0.9rem; text-align: center; font-weight: 600;}
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <svg width="70" height="70" viewBox="0 0 284.59748 285.05746" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <defs>
+                <filter id="double-inset-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feOffset in="SourceAlpha" dx="-2" dy="-2" result="offset-dark"/>
+                    <feGaussianBlur in="offset-dark" stdDeviation="3" result="blur-dark"/>
+                    <feComposite operator="in" in="blur-dark" in2="SourceAlpha" result="clip-dark"/>
+                    <feFlood flood-color="var(--shadow-dark)" result="color-dark"/>
+                    <feComposite operator="in" in="color-dark" in2="clip-dark" result="shadow-dark"/>
+                    <feOffset in="SourceAlpha" dx="2" dy="2" result="offset-light"/>
+                    <feGaussianBlur in="offset-light" stdDeviation="3" result="blur-light"/>
+                    <feComposite operator="in" in="blur-light" in2="SourceAlpha" result="clip-light"/>
+                    <feFlood flood-color="var(--text-color)" result="color-light"/>
+                    <feComposite operator="in" in="color-light" in2="clip-light" result="shadow-light"/>
+                    <feMerge>
+                        <feMergeNode in="SourceGraphic"/>
+                        <feMergeNode in="shadow-dark"/>
+                        <feMergeNode in="shadow-light"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <g transform="translate(-155.87645,-254.24692)">
+                <path d="m 443,523.2 c 0.1,-0.5 0.2,0.2 0.2,0.3 -0.2,0.3 -0.2,0 -0.2,-0.2 v -0.2 z" />
+                <path d="m 180,465.3 c -8.4,-2.2 -15.6,-9.3 -20.2,-16.6 -7.7,-11.9 -3.2,-26.1 6,-35.8 10.7,-11.8 21.8,-13 35.9,-17.3 8.9,-3.1 16.6,-9.8 21,-18.2 4.1,-7.9 5.5,-18.2 9,-26.4 3.6,-8.4 10.5,-15.1 18.1,-20.1 7.3,-4.9 16.1,-5.8 24.2,-2.4 11.8,4.4 21,15.8 21.7,28.5 0.2,9 -5.8,17.6 -12,24.1 -5.8,6.2 -13.1,9.9 -21.4,11.8 -8.3,2.1 -17.4,4.1 -24.1,9.6 -5.6,4.6 -10,11.3 -12.2,18 -1.6,5 -2.1,10.1 -3.6,15.1 -4.6,16.4 -24.3,33.7 -42.1,29.9 h -0.4 z" />
+                <path d="m 324.4,464.7 c -9,-3.3 -16.8,-10 -20.4,-19 -8.4,-18.5 4.9,-36.6 25.3,-44.6 10.3,-3.9 22.3,-5.2 30.7,-12.4 15.3,-12.7 12.1,-26.5 19.4,-41.9 3.7,-7 9.8,-12.7 17.3,-16.8 7.1,-4.2 15.2,-4.9 22.7,-1.6 35.9,15.8 21.9,57.4 -11.8,64.6 -17.5,3.9 -30.6,9.6 -36.2,27.3 -2.4,7.1 -3.9,16 -6.9,22.6 -6.5,14.1 -23.6,27.7 -39.7,21.9 h -0.4 z" />
+                <path d="m 329,391.8 c -12.8,-4.9 -23,-15.1 -26.7,-28.7 -1.5,-5.2 -2.6,-10.8 -4.2,-15.9 -3.3,-10 -11.1,-18.3 -20.7,-22.2 -13.4,-4.9 -26.3,-5 -36.9,-16.1 -9.1,-8.7 -14.6,-21 -9.6,-33.4 2.6,-7.1 8.9,-13.7 15.7,-17.7 10.3,-6.5 22.6,-3.4 31.7,3.8 9.1,6.4 14.9,15.8 17.3,26.8 1.3,5.3 2.2,10.6 4.5,15.5 4.3,9 12.6,16 22.2,19.2 6,2.1 13.2,3.5 19.2,5.9 13.8,5.1 26.6,18.9 26.3,34 -1.5,17.7 -20.3,34.9 -38.3,29 h -0.4 z" />
+                <path d="m 330.2,538.4 c -12.7,-3.8 -23.8,-16 -27.8,-29 -1.5,-4.8 -1.9,-9.6 -3.4,-14.4 -3.8,-12.5 -13.7,-22.7 -26.4,-26.5 -7.4,-2.4 -15.4,-3.5 -22.3,-7.3 -8.1,-4.3 -14.8,-11.1 -18.8,-19.3 -12,-21 13.9,-48.4 35.4,-41.9 11.9,4 23.2,15.1 26.9,27.3 3.9,12.7 4.1,24.1 15.2,33.3 11.2,11.2 25.3,9.4 38.2,16.5 13.6,8.2 25.2,23.5 19.4,40.2 -4.9,14.3 -20.9,25.1 -35.9,21.2 h -0.3 z" />
+            </g>
+        </svg>
+    </div>
+    <button class="utility-btn icon-btn" id="contrast-toggle" aria-label="Vision">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+    </button>
+    <div id="style-guide-container">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem;">
+            <div style="width: 44px;"></div> <!-- Placeholder for logo -->
+            <div>
+                <h1 class="main-title" style="margin-bottom: 0;">Master Style Reference</h1>
+                <p class="subtitle" style="margin-bottom: 0;">A comprehensive guide to the visual components of the Dendrite AT "Sign Share" application.</p>
+            </div>
+        </header>
+
+        <section id="color-palette">
+            <h2 class="level-1">Color Palette</h2>
+            <div class="component-display">
+                <div class="component-item"><div class="color-swatch" style="background-color: var(--bg-color);"></div><p class="swatch-label">Background<br>(--bg-color)</p></div>
+                <div class="component-item"><div class="color-swatch" style="background-color: var(--primary-blue);"></div><p class="swatch-label">Primary<br>(--primary-blue)</p></div>
+                <div class="component-item"><div class="color-swatch" style="background-color: var(--text-color);"></div><p class="swatch-label">Text<br>(--text-color)</p></div>
+                <div class="component-item"><div class="color-swatch" style="background-color: var(--success);"></div><p class="swatch-label">Success<br>(--success)</p></div>
+                <div class="component-item"><div class="color-swatch" style="background-color: var(--error);"></div><p class="swatch-label">Error<br>(--error)</p></div>
+            </div>
+        </section>
+
+        <section id="buttons">
+            <h2 class="level-1">Buttons & Interactive Elements</h2>
+            <h3 class="level-2">Standard Buttons</h3>
+            <div class="component-display">
+                <div class="component-item"><button class="neu-button">Create New</button></div>
+                <div class="component-item"><button class="neu-button primary">Save</button></div>
+                <div class="component-item"><button class="neu-button small">Edit List</button></div>
+            </div>
+            <h3 class="level-2">Utility Buttons</h3>
+            <div class="component-display">
+                <div class="component-item"><button class="utility-btn icon-btn" aria-label="Language"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></button></div>
+                <div class="component-item"><button class="utility-btn icon-btn" aria-label="Vision"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+            </div>
+        </section>
+
+        <section id="forms">
+            <h2 class="level-1">Forms & Feedback</h2>
+            <h3 class="level-2">Inputs</h3>
+            <div class="component-display"><input type="text" class="neu-input" placeholder="Enter a word..." style="width: 100%; max-width: 400px;"></div>
+            <h3 class="level-2">Feedback Toasts</h3>
+            <div class="component-display" style="flex-direction: column; align-items: flex-start; gap: 1rem;">
+                <div class="toast toast-success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Successfully saved!</span></div>
+                <div class="toast toast-error"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg><span>Error: Could not find list.</span></div>
+                <div class="toast toast-info"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span>Passphrase copied.</span></div>
+            </div>
+            <h3 class="level-2">Loading Spinner</h3>
+            <div class="component-display"><div class="loading-spinner"></div></div>
+        </section>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contrastToggle = document.getElementById('contrast-toggle');
+            if (contrastToggle) {
+                const toggle = () => {
+                    const root = document.documentElement;
+                    let theme = '';
+                    if (root.classList.contains('dark-theme')) {
+                        root.classList.remove('dark-theme');
+                        root.classList.add('high-contrast');
+                        theme = 'high-contrast';
+                    } else if (root.classList.contains('high-contrast')) {
+                        root.classList.remove('high-contrast');
+                        theme = ''; // Light theme
+                    } else {
+                        root.classList.add('dark-theme');
+                        theme = 'dark-theme';
+                    }
+                    try {
+                        localStorage.setItem('sign-share-theme', theme);
+                    } catch (e) {
+                        console.error('Could not save theme to localStorage', e);
+                    }
+                };
+                contrastToggle.addEventListener('click', toggle);
+                contrastToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggle();
+                    }
+                });
+            }
+            const buttons = document.querySelectorAll('.neu-button, .utility-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    if (document.documentElement.classList.contains('high-contrast') || button.dataset.animating) {
+                        return;
+                    }
+                    button.dataset.animating = 'true';
+                    button.classList.add('clicked');
+                    setTimeout(() => {
+                        button.classList.remove('clicked');
+                        delete button.dataset.animating;
+                    }, 400);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

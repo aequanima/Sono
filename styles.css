@@ -9,6 +9,7 @@
 :root {
     --bg-color: #e0e5ec;
     --text-color: #3a4558;
+    --text-emphasis: #3a4558;
     --primary-blue: #6b9bd1;
     --light-blue: #a8c5e6;
     --shadow-light: #ffffff;
@@ -19,9 +20,24 @@
     --error: #fc8181;
 }
 
+body.dark-theme {
+    --bg-color: #073642;
+    --text-color: #9bc1c2;
+    --text-emphasis: #b8d5d6;
+    --primary-blue: #4da7e0;
+    --light-blue: #32c1b6;
+    --shadow-light: #6c8b91;
+    --shadow-dark: #002b36;
+    --inlay-light: #6c8b91;
+    --inlay-dark: #002b36;
+    --success: #9ebe2d;
+    --error: #ff5577;
+}
+
 body.high-contrast {
     --bg-color: #ffffff;
     --text-color: #000000;
+    --text-emphasis: #000000;
     --primary-blue: #0066cc;
     --light-blue: #0066cc;
     --shadow-light: #dddddd;
@@ -1313,6 +1329,13 @@ body {
     width: 80%;
     height: 80%;
     object-fit: contain;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
 }
 
 .card-label {

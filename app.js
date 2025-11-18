@@ -3,6 +3,28 @@ let currentSubjects = [];
 let currentPassphrase = '';
 let autocompleteIndex = -1;
 
+function triggerHaptic(type = 'light') {
+    if (navigator.vibrate) {
+        switch(type) {
+            case 'light':
+                navigator.vibrate(10);
+                break;
+            case 'medium':
+                navigator.vibrate(20);
+                break;
+            case 'heavy':
+                navigator.vibrate(40);
+                break;
+            case 'success':
+                navigator.vibrate([20, 50, 20]);
+                break;
+            case 'error':
+                navigator.vibrate([10, 30, 10, 30, 10]);
+                break;
+        }
+    }
+}
+
 async function loadSubjectList() {
     const response = await fetch('subjects.json');
     subjectList = await response.json();
@@ -246,6 +268,7 @@ async function renderSubjectList() {
 }
 
 function removeSubjectWithAnimation(item, index) {
+    triggerHaptic('light');
     gsap.to(item, {
         opacity: 0,
         duration: 0.3,
@@ -259,6 +282,7 @@ function removeSubjectWithAnimation(item, index) {
 
 async function previewSubjectSound(subject) {
     try {
+        triggerHaptic('light');
         await audioManager.playSoundForSubject(subject);
     } catch (error) {
         console.error('Error playing sound:', error);
@@ -306,6 +330,7 @@ function showAutocomplete(value) {
         item.appendChild(subjectSpan);
         item.style.opacity = '0';
         item.addEventListener('click', () => {
+            triggerHaptic('light');
             addSubject(subject);
             document.getElementById('subject-input').value = '';
             container.classList.remove('active');
@@ -349,6 +374,7 @@ function addSubject(subject) {
     });
 
     if (invalidSubjects.length > 0) {
+        triggerHaptic('error');
         inputRow.classList.add('error');
         setTimeout(() => inputRow.classList.remove('error'), 500);
         showToast(t('invalidSubject'), 'error');
@@ -356,6 +382,7 @@ function addSubject(subject) {
     }
 
     if (duplicates.length > 0) {
+        triggerHaptic('error');
         inputRow.classList.add('error');
         setTimeout(() => inputRow.classList.remove('error'), 500);
         showToast(t('duplicateSubject'), 'error');
@@ -363,6 +390,7 @@ function addSubject(subject) {
     }
 
     if (addedSubjects.length > 0) {
+        triggerHaptic('success');
         currentSubjects.push(...addedSubjects);
         renderSubjectList();
         updateSubjectCount();
@@ -427,6 +455,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     const createBtn = document.getElementById('create-btn');
     createBtn.addEventListener('click', (e) => {
+        triggerHaptic('medium');
         currentSubjects = [];
         showScreen('entry-screen');
         updateSubjectCount();
@@ -436,6 +465,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     
     document.getElementById('retrieve-btn').addEventListener('click', () => {
+        triggerHaptic('medium');
         document.getElementById('passphrase-input-container').classList.remove('hidden');
     });
     
@@ -543,6 +573,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     copyBtn.addEventListener('click', async () => {
         const originalText = copyBtn.textContent;
         try {
+            triggerHaptic('success');
             await navigator.clipboard.writeText(currentPassphrase);
             copyBtn.textContent = '✓ Copied!';
             copyBtn.style.pointerEvents = 'none';
@@ -579,6 +610,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     
     document.getElementById('proceed-btn').addEventListener('click', async () => {
+        triggerHaptic('medium');
         hidePassphraseModal();
         showScreen('game-screen');
         showToast(t('loadingGame'), 'info');
@@ -603,6 +635,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     document.addEventListener('click', async (e) => {
         if (e.target.id === 'play-again-btn' || e.target.closest('#play-again-btn')) {
+            triggerHaptic('medium');
             showToast(t('loadingGame'), 'info');
             await startGame(currentSubjects, settingsManager.getSettings());
         }
@@ -613,6 +646,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     
     document.getElementById('localization-btn').addEventListener('click', () => {
+        triggerHaptic('light');
         const panel = document.getElementById('language-panel');
         panel.classList.toggle('open');
     });
@@ -622,13 +656,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     
     document.getElementById('vision-btn').addEventListener('click', () => {
-        document.body.classList.toggle('high-contrast');
-        const isHighContrast = document.body.classList.contains('high-contrast');
-        localStorage.setItem('high-contrast', isHighContrast);
+        triggerHaptic('light');
+        const body = document.body;
+        let theme = '';
+        
+        if (body.classList.contains('dark-theme')) {
+            body.classList.remove('dark-theme');
+            body.classList.add('high-contrast');
+            theme = 'high-contrast';
+        } else if (body.classList.contains('high-contrast')) {
+            body.classList.remove('high-contrast');
+            theme = '';
+        } else {
+            body.classList.add('dark-theme');
+            theme = 'dark-theme';
+        }
+        
+        localStorage.setItem('sono-theme', theme);
     });
     
-    if (localStorage.getItem('high-contrast') === 'true') {
-        document.body.classList.add('high-contrast');
+    const savedTheme = localStorage.getItem('sono-theme');
+    if (savedTheme) {
+        document.body.classList.add(savedTheme);
     }
     
     document.getElementById('settings-modal-close')?.addEventListener('click', () => {
@@ -705,6 +754,7 @@ function initLanguagePanel() {
         }
         
         item.addEventListener('click', () => {
+            triggerHaptic('light');
             document.querySelectorAll('.language-item').forEach(el => el.classList.remove('active'));
             item.classList.add('active');
             setLanguage(lang.code);

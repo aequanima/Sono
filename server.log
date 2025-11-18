@@ -2878,3 +2878,239 @@
 ::1 - - [17/Nov/2025 11:18:15] "GET /cards.js HTTP/1.1" 304 -
 ::1 - - [17/Nov/2025 11:18:15] "GET /settings.js HTTP/1.1" 304 -
 ::1 - - [17/Nov/2025 11:18:15] "GET /app.js HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:34:17] "GET / HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:34:17] "GET /styles.css HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:34:17] "GET /print.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:34:17] "GET /localization.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:34:17] "GET /settings.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:34:17] "GET /cards.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:34:17] "GET /app.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:34:34] "GET /assets/images/photos/cow.png HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:34:39] "GET /assets/images/photos/goat.png HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cat9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/cow9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/bird9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat1.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat0.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat3.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat2.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat4.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat6.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat5.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat7.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat9.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "HEAD /assets/images/photos/goat8.png HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:34:45] "GET /assets/sounds/cow.mp3 HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:34:45] code 404, message File not found
+::1 - - [17/Nov/2025 11:34:45] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [17/Nov/2025 11:49:48] "GET / HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /localization.js HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /toast.js HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /audio.js HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /settings.js HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /print.js HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /cards.js HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /app.js HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:49:48] "GET /subjects.json HTTP/1.1" 200 -
+::1 - - [17/Nov/2025 11:57:24] "GET / HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:57:24] "GET /styles.css HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:57:24] "GET /cards.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:57:24] "GET /settings.js HTTP/1.1" 304 -
+::1 - - [17/Nov/2025 11:57:24] "GET /app.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:49:44] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:49:44] "GET /styles.css HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:49:44] "GET /localization.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:49:44] "GET /settings.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:49:44] "GET /cards.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:49:44] "GET /print.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:49:44] "GET /app.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:49:44] "GET /audio.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:55:12] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 08:55:14] "GET / HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /localization.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /toast.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /audio.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /print.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /settings.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /cards.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /app.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:14] "GET /subjects.json HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:16] "GET /assets/images/photos/dog.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:17] "GET /assets/images/photos/cat.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:18] "GET /assets/images/photos/pig.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:19] "GET /assets/images/photos/horse.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:21] code 404, message File not found
+::1 - - [18/Nov/2025 08:55:21] code 404, message File not found
+::1 - - [18/Nov/2025 08:55:21] code 404, message File not found
+::1 - - [18/Nov/2025 08:55:21] code 404, message File not found
+::1 - - [18/Nov/2025 08:55:21] "GET /assets/images/photos/dog4.png HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 08:55:21] "GET /assets/images/photos/cat2.png HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 08:55:21] "GET /assets/images/photos/pig5.png HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 08:55:21] "GET /assets/images/photos/horse2.png HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 08:55:21] "GET /assets/sounds/dog.mp3 HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 08:55:21] code 404, message File not found
+::1 - - [18/Nov/2025 08:55:21] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:12:32] "GET / HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:32] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:32] "GET /localization.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:32] "GET /audio.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:32] "GET /toast.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:32] "GET /print.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:32] "GET /settings.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:32] "GET /cards.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:32] "GET /app.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:33] "GET /subjects.json HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:34] "GET /assets/images/photos/dog.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:35] "GET /assets/images/photos/cat.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:35] "GET /assets/images/photos/pig.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:36] "GET /assets/images/photos/bird.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:39] "GET /assets/sounds/pig.mp3 HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:39] code 404, message File not found
+::1 - - [18/Nov/2025 09:12:39] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:12:43] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:12:44] "GET / HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /localization.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /toast.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /print.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /audio.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /settings.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /cards.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /app.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:44] "GET /subjects.json HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:47] "GET /assets/images/photos/dog.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:47] "GET /assets/images/photos/cat.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:48] "GET /assets/images/photos/pig.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:49] "GET /assets/images/photos/bird.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:53] "GET /assets/sounds/dog.mp3 HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:12:53] code 404, message File not found
+::1 - - [18/Nov/2025 09:12:53] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:13:00] code 404, message File not found
+::1 - - [18/Nov/2025 09:13:00] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:15:08] "GET /assets/sounds/bird.mp3 HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:53] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:16:53] code 404, message File not found
+::1 - - [18/Nov/2025 09:16:53] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:16:53] "GET /cards.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:16:56] "GET / HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] code 404, message File not found
+::1 - - [18/Nov/2025 09:16:56] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:16:56] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] "GET /localization.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] "GET /audio.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] "GET /toast.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] "GET /settings.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] "GET /print.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] "GET /cards.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] "GET /app.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:16:56] "GET /subjects.json HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:21:29] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:21:29] code 404, message File not found
+::1 - - [18/Nov/2025 09:21:29] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:21:29] "GET /cards.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:22:17] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:22:17] code 404, message File not found
+::1 - - [18/Nov/2025 09:22:17] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:22:17] "GET /cards.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:29:32] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:29:32] "GET /cards.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:33:31] "GET /assets/images/photos/dog.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:33:32] "GET /assets/images/photos/cat.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:33:33] "GET /assets/images/photos/pig.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:33:34] "GET /assets/images/photos/truck.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:33:34] code 404, message File not found
+::1 - - [18/Nov/2025 09:33:34] "GET /assets/images/photos/rain.png HTTP/1.1" 404 -
+::1 - - [18/Nov/2025 09:42:22] "GET / HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /toast.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /audio.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /print.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /cards.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /localization.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /settings.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /app.js HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:42:22] "GET /subjects.json HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:43:03] "GET /assets/images/photos/dog.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:43:04] "GET /assets/images/photos/cat.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:43:04] "GET /assets/images/photos/pig.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:43:06] "GET /assets/images/photos/bird.png HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:43:10] "GET /assets/sounds/cat.mp3 HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:43:10] "GET /favicon.ico HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:44:18] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:44:18] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:44:18] "GET /app.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:44:26] "GET /styles.css HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:44:46] "GET /assets/sounds/bird.mp3 HTTP/1.1" 200 -
+::1 - - [18/Nov/2025 09:45:58] "GET / HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:45:58] "GET /styles.css HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:45:58] "GET /cards.js HTTP/1.1" 304 -
+::1 - - [18/Nov/2025 09:45:58] "GET /app.js HTTP/1.1" 304 -

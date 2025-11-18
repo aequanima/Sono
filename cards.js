@@ -13,6 +13,28 @@ class CardGame {
         this.endTime = null;
     }
 
+    triggerHaptic(type = 'medium') {
+        if (navigator.vibrate) {
+            switch(type) {
+                case 'light':
+                    navigator.vibrate(10);
+                    break;
+                case 'medium':
+                    navigator.vibrate(20);
+                    break;
+                case 'heavy':
+                    navigator.vibrate(40);
+                    break;
+                case 'success':
+                    navigator.vibrate([20, 50, 20]);
+                    break;
+                case 'error':
+                    navigator.vibrate([10, 30, 10, 30, 10]);
+                    break;
+            }
+        }
+    }
+
     async init() {
         await this.selectImageVariants();
         this.renderCards();
@@ -25,43 +47,10 @@ class CardGame {
     async selectImageVariants() {
         const imageMode = this.settings.visualMode || 'graphic';
         
-        const promises = this.subjects.map(async (subject) => {
+        this.subjects.forEach(subject => {
             const basePath = `assets/images/${imageMode}/${subject}`;
-            const candidates = [
-                `${basePath}.png`,
-                `${basePath}0.png`,
-                `${basePath}1.png`,
-                `${basePath}2.png`,
-                `${basePath}3.png`,
-                `${basePath}4.png`,
-                `${basePath}5.png`,
-                `${basePath}6.png`,
-                `${basePath}7.png`,
-                `${basePath}8.png`,
-                `${basePath}9.png`
-            ];
-
-            const checks = candidates.map(async (path) => {
-                try {
-                    const response = await fetch(path, { method: 'HEAD' });
-                    if (response.ok) return path;
-                } catch (e) {
-                }
-                return null;
-            });
-
-            const results = await Promise.all(checks);
-            const available = results.filter(path => path !== null);
-
-            if (available.length > 0) {
-                const randomIndex = Math.floor(Math.random() * available.length);
-                this.subjectImageVariants[subject] = available[randomIndex];
-            } else {
-                this.subjectImageVariants[subject] = `${basePath}.png`;
-            }
+            this.subjectImageVariants[subject] = `${basePath}.png`;
         });
-
-        await Promise.all(promises);
     }
 
     renderCards() {
@@ -91,11 +80,18 @@ class CardGame {
         img.src = imagePath;
         img.alt = subject;
         img.onerror = () => {
-            img.style.display = 'none';
-            const label = document.createElement('div');
-            label.className = 'card-label';
-            label.textContent = subject.replace(/_/g, ' ');
-            card.appendChild(label);
+            const imageMode = this.settings.visualMode || 'graphic';
+            const basePath = `assets/images/${imageMode}/${subject}.png`;
+            
+            if (img.src !== window.location.origin + window.location.pathname.replace('index.html', '') + basePath) {
+                img.src = basePath;
+            } else {
+                img.style.display = 'none';
+                const label = document.createElement('div');
+                label.className = 'card-label';
+                label.textContent = subject.replace(/_/g, ' ');
+                card.appendChild(label);
+            }
         };
 
         card.appendChild(img);
@@ -167,6 +163,7 @@ class CardGame {
     async handleCardClick(subject, cardElement) {
         if (this.isPlaying || !this.currentSubject || this.isProcessingAnswer) return;
 
+        this.triggerHaptic('light');
         this.totalAttempts++;
 
         if (subject === this.currentSubject) {
@@ -187,6 +184,7 @@ class CardGame {
         }
         
         cardElement.classList.add('correct');
+        this.triggerHaptic('success');
         
         if (this.settings.successSound) {
             await audioManager.playSuccessTone();
@@ -221,6 +219,7 @@ class CardGame {
 
     async handleIncorrectAnswer(cardElement) {
         cardElement.classList.add('incorrect');
+        this.triggerHaptic('error');
         
         if (this.settings.errorSound) {
             await audioManager.playErrorTone();

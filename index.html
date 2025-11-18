@@ -21,6 +21,20 @@
     <meta name="twitter:title" content="Sonō - Sound Matching Game">
     <meta name="twitter:description" content="Free auditory discrimination game for early intervention therapy with toddlers.">
     
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('sono-theme');
+                if (theme) {
+                    document.addEventListener('DOMContentLoaded', function() {
+                        document.body.classList.add(theme);
+                    });
+                }
+            } catch (e) {
+                console.error('Could not apply theme from localStorage', e);
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>

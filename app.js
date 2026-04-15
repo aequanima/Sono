@@ -629,7 +629,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('audio-indicator')?.addEventListener('click', async (e) => {
         e.stopPropagation();
         if (currentGame) {
-            await currentGame.replayCurrentSound();
+            if (currentGame.isAutoAdvanceCountdownActive()) {
+                currentGame.toggleAutoAdvancePause();
+            } else {
+                await currentGame.replayCurrentSound();
+            }
         }
     });
     

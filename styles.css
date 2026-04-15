@@ -1278,6 +1278,71 @@ body {
     50% { transform: scale(1.05); }
 }
 
+/* Audio indicator wrapper with countdown ring */
+.audio-indicator-wrapper {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+.audio-indicator-wrapper .audio-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.countdown-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.countdown-ring.active {
+    opacity: 1;
+}
+
+.countdown-ring-bg {
+    fill: none;
+    stroke: var(--shadow-dark);
+    stroke-width: 3;
+    opacity: 0.2;
+}
+
+.countdown-ring-progress {
+    fill: none;
+    stroke: var(--primary-blue);
+    stroke-width: 3;
+    stroke-dasharray: 226.19;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+}
+
+.indicator-icon-hidden {
+    display: none;
+}
+
+/* Auto-advance flash for correct card reveal */
+.auto-advance-flash {
+    box-shadow: 0 0 20px var(--primary-blue), 0 0 40px var(--primary-blue) !important;
+    border: 3px solid var(--primary-blue) !important;
+}
+
+/* Settings divider */
+.settings-divider {
+    border: none;
+    border-top: 1px solid var(--shadow-dark);
+    opacity: 0.2;
+    margin: 1rem 0;
+}
+
 .card-grid {
     display: grid;
     gap: 1rem;
@@ -1724,6 +1789,11 @@ input[type="checkbox"]:checked::before {
     .game-container {
         padding: 1rem;
         gap: 0.5rem;
+    }
+
+    .audio-indicator-wrapper {
+        width: 60px;
+        height: 60px;
     }
 
     .audio-indicator {

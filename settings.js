@@ -12,7 +12,12 @@ const defaultSettings = {
         type: 'glow'
     },
     successSound: true,
-    errorSound: true
+    errorSound: true,
+    autoAdvance: {
+        enabled: false,
+        delay: 10000,
+        mode: 'interactive'
+    }
 };
 
 class SettingsManager {
@@ -67,6 +72,9 @@ function initSettingsPanel() {
     const cueDelaySlider = document.getElementById('cue-delay-slider');
     const cueIntensitySelect = document.getElementById('cue-intensity-select');
     const cueTypeSelect = document.getElementById('cue-type-select');
+    const autoAdvanceEnabledCheckbox = document.getElementById('auto-advance-enabled-checkbox');
+    const autoAdvanceDelaySlider = document.getElementById('auto-advance-delay-slider');
+    const autoAdvanceModeSelect = document.getElementById('auto-advance-mode-select');
 
     const settings = settingsManager.getSettings();
 
@@ -79,6 +87,9 @@ function initSettingsPanel() {
     if (cueDelaySlider) cueDelaySlider.value = settings.cueing.delay / 1000;
     if (cueIntensitySelect) cueIntensitySelect.value = settings.cueing.intensity;
     if (cueTypeSelect) cueTypeSelect.value = settings.cueing.type;
+    if (autoAdvanceEnabledCheckbox) autoAdvanceEnabledCheckbox.checked = settings.autoAdvance.enabled;
+    if (autoAdvanceDelaySlider) autoAdvanceDelaySlider.value = settings.autoAdvance.delay / 1000;
+    if (autoAdvanceModeSelect) autoAdvanceModeSelect.value = settings.autoAdvance.mode;
 
     if (gridSizeSelect) {
         gridSizeSelect.addEventListener('change', (e) => {
@@ -135,6 +146,27 @@ function initSettingsPanel() {
         cueTypeSelect.addEventListener('change', (e) => {
             const cueing = { ...settings.cueing, type: e.target.value };
             settingsManager.saveSettings({ cueing });
+        });
+    }
+
+    if (autoAdvanceEnabledCheckbox) {
+        autoAdvanceEnabledCheckbox.addEventListener('change', (e) => {
+            const autoAdvance = { ...settings.autoAdvance, enabled: e.target.checked };
+            settingsManager.saveSettings({ autoAdvance });
+        });
+    }
+
+    if (autoAdvanceDelaySlider) {
+        autoAdvanceDelaySlider.addEventListener('input', (e) => {
+            const autoAdvance = { ...settings.autoAdvance, delay: parseInt(e.target.value) * 1000 };
+            settingsManager.saveSettings({ autoAdvance });
+        });
+    }
+
+    if (autoAdvanceModeSelect) {
+        autoAdvanceModeSelect.addEventListener('change', (e) => {
+            const autoAdvance = { ...settings.autoAdvance, mode: e.target.value };
+            settingsManager.saveSettings({ autoAdvance });
         });
     }
 }

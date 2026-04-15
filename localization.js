@@ -64,7 +64,13 @@ const translations = {
         numberOfSheets: "Number of Sheets",
         gridRows: "Rows",
         gridColumns: "Columns",
-        generatePDF: "Generate PDF"
+        generatePDF: "Generate PDF",
+        enableAutoAdvance: "Enable Auto-Advance",
+        autoAdvanceDelay: "Auto-Advance Delay (seconds)",
+        autoAdvanceMode: "Auto-Advance Mode",
+        interactive: "Interactive",
+        handsFree: "Hands-Free",
+        autoAdvanced: "Auto-advanced"
     },
     zh: {
         name: "中文",

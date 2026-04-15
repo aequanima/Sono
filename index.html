@@ -23,6 +23,20 @@
     
     <script>
         (function() {
+            var path = window.location.pathname;
+            // Handle clean URLs (e.g. /sono instead of /sono/)
+            if (!path.endsWith('/') && path.indexOf('.') === -1) {
+                path += '/';
+            }
+            var basePath = path.substring(0, path.lastIndexOf('/') + 1);
+            var base = document.createElement('base');
+            base.href = basePath;
+            document.head.insertBefore(base, document.head.firstChild);
+        })();
+    </script>
+
+    <script>
+        (function() {
             try {
                 var theme = localStorage.getItem('sono-theme');
                 if (theme) {
@@ -31,7 +45,7 @@
                     });
                 }
             } catch (e) {
-                console.error('Could not apply theme from localStorage', e);
+                // Ignore errors
             }
         })();
     </script>
@@ -112,13 +126,26 @@
                 </svg>
             </button>
             <div class="game-container">
-                <button id="audio-indicator" class="audio-indicator" aria-label="Replay Sound" title="Replay Sound">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <div id="audio-indicator-wrapper" class="audio-indicator-wrapper">
+                    <svg class="countdown-ring" id="countdown-ring" viewBox="0 0 80 80">
+                        <circle class="countdown-ring-bg" cx="40" cy="40" r="36" />
+                        <circle class="countdown-ring-progress" id="countdown-ring-progress" cx="40" cy="40" r="36" />
                     </svg>
-                </button>
+                    <button id="audio-indicator" class="audio-indicator" aria-label="Replay Sound" title="Replay Sound">
+                        <svg id="speaker-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        <svg id="pause-icon" class="indicator-icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="8" y1="5" x2="8" y2="19"></line>
+                            <line x1="16" y1="5" x2="16" y2="19"></line>
+                        </svg>
+                        <svg id="play-icon" class="indicator-icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </button>
+                </div>
                 <div id="card-grid" class="card-grid"></div>
                 <div id="game-complete-section" class="game-complete-section hidden">
                     <button class="neu-button primary large" id="play-again-btn" data-i18n="playAgain">Play Again</button>
@@ -210,6 +237,24 @@
                     <option value="glow" selected data-i18n="glow">Glow</option>
                     <option value="wiggle" data-i18n="wiggle">Wiggle</option>
                     <option value="bounce" data-i18n="bounce">Bounce</option>
+                </select>
+            </div>
+            <hr class="settings-divider">
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="auto-advance-enabled-checkbox">
+                    <span data-i18n="enableAutoAdvance">Enable Auto-Advance</span>
+                </label>
+            </div>
+            <div class="setting-group">
+                <label data-i18n="autoAdvanceDelay">Auto-Advance Delay (seconds)</label>
+                <input type="range" id="auto-advance-delay-slider" min="3" max="30" value="10" step="1" class="slider">
+            </div>
+            <div class="setting-group">
+                <label data-i18n="autoAdvanceMode">Auto-Advance Mode</label>
+                <select id="auto-advance-mode-select" class="neu-input">
+                    <option value="interactive" selected data-i18n="interactive">Interactive</option>
+                    <option value="handsFree" data-i18n="handsFree">Hands-Free</option>
                 </select>
             </div>
             </div>

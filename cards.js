@@ -11,6 +11,13 @@ class CardGame {
         this.subjectImageVariants = {};
         this.startTime = null;
         this.endTime = null;
+        this.autoAdvanceTimer = null;
+        this.autoAdvancedCount = 0;
+        this.autoAdvancePaused = false;
+        this.countdownAnimation = null;
+        this.autoAdvanceStartTime = null;
+        this.autoAdvanceRemainingTime = 0;
+        this.gameStartedFirstSound = true;
     }
 
     triggerHaptic(type = 'medium') {
@@ -41,7 +48,26 @@ class CardGame {
         this.enableSettingsButton(false);
         this.hideGameCompleteSection();
         this.startTime = Date.now();
-        this.playNextSound();
+
+        if (this.settings.autoAdvance && this.settings.autoAdvance.enabled) {
+            // Start paused so the user isn't startled by immediate sound
+            this.showPausedIndicator();
+        } else {
+            this.playNextSound();
+        }
+    }
+
+    showPausedIndicator() {
+        const speakerIcon = document.getElementById('speaker-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const playIcon = document.getElementById('play-icon');
+
+        if (speakerIcon) speakerIcon.classList.add('indicator-icon-hidden');
+        if (pauseIcon) pauseIcon.classList.add('indicator-icon-hidden');
+        if (playIcon) playIcon.classList.remove('indicator-icon-hidden');
+
+        this.autoAdvancePaused = true;
+        this.gameStartedFirstSound = false;
     }
 
     async selectImageVariants() {
@@ -130,6 +156,10 @@ class CardGame {
 
         this.isPlaying = false;
         this.updateProgress();
+
+        if (this.settings.autoAdvance && this.settings.autoAdvance.enabled) {
+            this.startAutoAdvanceCountdown();
+        }
     }
 
     async replayCurrentSound() {
@@ -162,6 +192,7 @@ class CardGame {
 
     async handleCardClick(subject, cardElement) {
         if (this.isPlaying || !this.currentSubject || this.isProcessingAnswer) return;
+        if (this.settings.autoAdvance && this.settings.autoAdvance.enabled && this.settings.autoAdvance.mode === 'handsFree') return;
 
         this.triggerHaptic('light');
         this.totalAttempts++;
@@ -177,6 +208,7 @@ class CardGame {
     }
 
     async handleCorrectAnswer(cardElement) {
+        this.clearAutoAdvanceTimer();
         const subject = cardElement.dataset.subject;
         const card = this.cards.find(c => c.subject === subject);
         if (card) {
@@ -280,6 +312,178 @@ class CardGame {
         }, 2000);
     }
 
+    // --- Auto-Advance Methods ---
+
+    startAutoAdvanceCountdown() {
+        this.clearAutoAdvanceTimer();
+        this.autoAdvancePaused = false;
+
+        const delay = this.settings.autoAdvance.delay;
+        this.autoAdvanceRemainingTime = delay;
+        this.autoAdvanceStartTime = Date.now();
+
+        // Show countdown ring and swap to pause icon
+        const ring = document.getElementById('countdown-ring');
+        const progress = document.getElementById('countdown-ring-progress');
+        const speakerIcon = document.getElementById('speaker-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const playIcon = document.getElementById('play-icon');
+
+        if (ring) ring.classList.add('active');
+        if (speakerIcon) speakerIcon.classList.add('indicator-icon-hidden');
+        if (pauseIcon) pauseIcon.classList.remove('indicator-icon-hidden');
+        if (playIcon) playIcon.classList.add('indicator-icon-hidden');
+
+        // Animate the SVG ring (stroke-dashoffset from 0 to full circumference)
+        const circumference = 2 * Math.PI * 36; // ~226.19
+        if (progress) {
+            gsap.set(progress, { strokeDashoffset: 0 });
+            this.countdownAnimation = gsap.to(progress, {
+                strokeDashoffset: circumference,
+                duration: delay / 1000,
+                ease: 'linear'
+            });
+        }
+
+        this.autoAdvanceTimer = setTimeout(() => {
+            this.autoAdvanceCard();
+        }, delay);
+    }
+
+    isAutoAdvanceCountdownActive() {
+        return this.autoAdvanceTimer !== null || this.autoAdvancePaused;
+    }
+
+    toggleAutoAdvancePause() {
+        if (this.autoAdvancePaused) {
+            // Check if this is the initial start (no sound played yet)
+            if (this.gameStartedFirstSound === false) {
+                this.autoAdvancePaused = false;
+                this.gameStartedFirstSound = true;
+                this.resetCountdownUI();
+                this.playNextSound();
+                return;
+            }
+
+            // Resume existing countdown
+            this.autoAdvancePaused = false;
+            this.autoAdvanceStartTime = Date.now();
+
+            const pauseIcon = document.getElementById('pause-icon');
+            const playIcon = document.getElementById('play-icon');
+            if (pauseIcon) pauseIcon.classList.remove('indicator-icon-hidden');
+            if (playIcon) playIcon.classList.add('indicator-icon-hidden');
+
+            if (this.countdownAnimation) {
+                this.countdownAnimation.resume();
+            }
+
+            this.autoAdvanceTimer = setTimeout(() => {
+                this.autoAdvanceCard();
+            }, this.autoAdvanceRemainingTime);
+        } else {
+            // Pause
+            this.autoAdvancePaused = true;
+            const elapsed = Date.now() - this.autoAdvanceStartTime;
+            this.autoAdvanceRemainingTime = Math.max(0, this.autoAdvanceRemainingTime - elapsed);
+
+            if (this.autoAdvanceTimer) {
+                clearTimeout(this.autoAdvanceTimer);
+                this.autoAdvanceTimer = null;
+            }
+
+            if (this.countdownAnimation) {
+                this.countdownAnimation.pause();
+            }
+
+            const pauseIcon = document.getElementById('pause-icon');
+            const playIcon = document.getElementById('play-icon');
+            if (pauseIcon) pauseIcon.classList.add('indicator-icon-hidden');
+            if (playIcon) playIcon.classList.remove('indicator-icon-hidden');
+        }
+    }
+
+    async autoAdvanceCard() {
+        if (!this.currentSubject || this.isProcessingAnswer) return;
+
+        this.isProcessingAnswer = true;
+        this.autoAdvancedCount++;
+
+        // Reset countdown UI
+        this.resetCountdownUI();
+
+        // Find the correct card
+        const card = this.cards.find(c => c.subject === this.currentSubject && !c.removed);
+        if (!card) {
+            this.isProcessingAnswer = false;
+            return;
+        }
+
+        const cardElement = card.element;
+
+        // Remove cue classes
+        cardElement.classList.remove('cue', 'cue-glow', 'cue-wiggle', 'cue-bounce', 'cue-subtle', 'cue-gentle', 'cue-obvious');
+
+        // Flash the card 3 times
+        cardElement.classList.add('auto-advance-flash');
+        await new Promise(resolve => {
+            gsap.fromTo(cardElement, { opacity: 1 }, {
+                opacity: 0.2,
+                duration: 0.25,
+                repeat: 5,
+                yoyo: true,
+                ease: 'power1.inOut',
+                onComplete: () => {
+                    gsap.set(cardElement, { opacity: 1 });
+                    resolve();
+                }
+            });
+        });
+
+        cardElement.classList.remove('auto-advance-flash');
+
+        // Remove or cross out the card
+        if (this.settings.cardBehavior === 'remove') {
+            this.removeCard(cardElement);
+        } else {
+            this.crossOutCard(cardElement);
+        }
+
+        this.isProcessingAnswer = false;
+
+        setTimeout(() => {
+            this.playNextSound();
+        }, 500);
+    }
+
+    clearAutoAdvanceTimer() {
+        if (this.autoAdvanceTimer) {
+            clearTimeout(this.autoAdvanceTimer);
+            this.autoAdvanceTimer = null;
+        }
+        if (this.countdownAnimation) {
+            this.countdownAnimation.kill();
+            this.countdownAnimation = null;
+        }
+        this.autoAdvancePaused = false;
+        this.autoAdvanceRemainingTime = 0;
+        this.resetCountdownUI();
+    }
+
+    resetCountdownUI() {
+        const ring = document.getElementById('countdown-ring');
+        const progress = document.getElementById('countdown-ring-progress');
+        const speakerIcon = document.getElementById('speaker-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const playIcon = document.getElementById('play-icon');
+
+        if (ring) ring.classList.remove('active');
+        if (progress) gsap.set(progress, { strokeDashoffset: 0 });
+        if (speakerIcon) speakerIcon.classList.remove('indicator-icon-hidden');
+        if (pauseIcon) pauseIcon.classList.add('indicator-icon-hidden');
+        if (playIcon) playIcon.classList.add('indicator-icon-hidden');
+    }
+
     showAudioIndicator() {
         const indicator = document.getElementById('audio-indicator');
         if (indicator) {
@@ -295,16 +499,17 @@ class CardGame {
     }
 
     onGameComplete() {
+        this.clearAutoAdvanceTimer();
         this.endTime = Date.now();
         const timeTaken = Math.round((this.endTime - this.startTime) / 1000);
-        const accuracy = this.totalAttempts > 0 
-            ? Math.round((this.correctCount / this.totalAttempts) * 100) 
+        const accuracy = this.totalAttempts > 0
+            ? Math.round((this.correctCount / this.totalAttempts) * 100)
             : 0;
         const incorrectCount = this.totalAttempts - this.correctCount;
-        
+
         this.enableSettingsButton(true);
         this.createConfetti();
-        
+
         setTimeout(() => {
             this.showGameCompleteSection(timeTaken, accuracy, incorrectCount);
         }, 1000);
@@ -335,6 +540,7 @@ class CardGame {
     }
 
     destroy() {
+        this.clearAutoAdvanceTimer();
         audioManager.stop();
         this.enableSettingsButton(true);
         const container = document.getElementById('card-grid');
@@ -358,11 +564,11 @@ class CardGame {
         const section = document.getElementById('game-complete-section');
         const statsDisplay = document.getElementById('game-stats');
         const grid = document.getElementById('card-grid');
-        const audioIndicator = document.getElementById('audio-indicator');
+        const audioIndicatorWrapper = document.getElementById('audio-indicator-wrapper');
 
         if (section && statsDisplay && grid) {
             grid.classList.add('hidden');
-            if (audioIndicator) audioIndicator.classList.add('hidden');
+            if (audioIndicatorWrapper) audioIndicatorWrapper.classList.add('hidden');
 
             const minutes = Math.floor(timeTaken / 60);
             const seconds = timeTaken % 60;
@@ -389,6 +595,11 @@ class CardGame {
                     <span class="stat-label">Total Attempts:</span>
                     <span class="stat-value">${this.totalAttempts}</span>
                 </div>
+                ${this.autoAdvancedCount > 0 ? `
+                <div class="stat-item">
+                    <span class="stat-label">${t('autoAdvanced')}:</span>
+                    <span class="stat-value">${this.autoAdvancedCount}</span>
+                </div>` : ''}
             `;
             
             section.classList.remove('hidden');
@@ -399,13 +610,13 @@ class CardGame {
     hideGameCompleteSection() {
         const section = document.getElementById('game-complete-section');
         const grid = document.getElementById('card-grid');
-        const audioIndicator = document.getElementById('audio-indicator');
-        
+        const audioIndicatorWrapper = document.getElementById('audio-indicator-wrapper');
+
         if (section && grid) {
             section.classList.add('hidden');
             section.classList.remove('center-flex');
             grid.classList.remove('hidden');
-            if (audioIndicator) audioIndicator.classList.remove('hidden');
+            if (audioIndicatorWrapper) audioIndicatorWrapper.classList.remove('hidden');
         }
     }
 }
@@ -416,16 +627,16 @@ async function startGame(subjects, settings) {
     if (currentGame) {
         currentGame.destroy();
     }
-    
+
     const completeSection = document.getElementById('game-complete-section');
     const grid = document.getElementById('card-grid');
-    const audioIndicator = document.getElementById('audio-indicator');
-    
+    const audioIndicatorWrapper = document.getElementById('audio-indicator-wrapper');
+
     if (completeSection && grid) {
         completeSection.classList.add('hidden');
         completeSection.classList.remove('center-flex');
         grid.classList.remove('hidden');
-        if (audioIndicator) audioIndicator.classList.remove('hidden');
+        if (audioIndicatorWrapper) audioIndicatorWrapper.classList.remove('hidden');
     }
     
     currentGame = new CardGame(subjects, settings);
